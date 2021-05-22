@@ -37,5 +37,40 @@
     </div>
 </div>
 
+<div>
+    <ul id="notes"></ul>
+    <script src="./scripts/notesmodel.js"></script>
+    <script>
+        //DOM Refs
+        const notesElement = document.querySelector('#notes');
+
+        // Rendering
+        function createNotesHtml(notes) {
+            return notes.map(notes =>
+                `<div>
+                    <div class="notes-row">
+                        <div>${notes.endDate !== '' ? notes.endDate : "Irgendwann"}</div>
+                        <div>${notes.title}</div>
+                    </div>
+                    <div class="notes-row">
+                        <div>
+                            <input type="checkbox">${notes.finished ? 'Finished [' + notes.finishDate + ']' : 'Finished'}</input>
+                        </div>
+                        <div>${notes.description}</div>
+                    </div>
+             </div>`
+            )
+                .join('');
+        }
+
+        function renderNotes() {
+            const notesHtml = createNotesHtml(notesSorted());
+            notesElement.innerHTML = notesHtml;
+        }
+
+        renderNotes();
+    </script>
+</div>
+
 </body>
 </html>

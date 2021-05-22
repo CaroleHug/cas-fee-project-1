@@ -16,3 +16,9 @@ body {
     justify-content: space-between;
     margin-bottom: 24px;
 }
+
+.notes-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+}
