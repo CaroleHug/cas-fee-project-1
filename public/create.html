@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Note Pro</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js"
+            integrity="sha256-/PJBs6QWvXijOFIX04kZpLb6ZtSQckdOIavLWKKOgXU=" crossorigin="anonymous" defer></script>
+    <script src="scripts/index.js" type="module"></script>
+
+    <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="styles/create.css">
+</head>
+<body>
+<form id="newNote">
+    <div class="form-rows">
+        <div class="row">
+            <label for="title" class="formLabel">Titel</label>
+            <input type="text" id="title" name="title" class="formField">
+        </div>
+        <div class="row">
+            <label for="description" class="formLabel">Beschreibung</label>
+            <textarea type="text" id="description" name="description" class="formField"></textarea>
+        </div>
+        <div class="row">
+            <label for="urgency" class="formLabel">Wichtigkeit</label>
+            <input type="text" id="urgency" name="urgency" class="formField">
+        </div>
+        <div class="row">
+            <label for="endDate" class="formLabel">Erledigen bis</label>
+            <input type="date" id="endDate" name="endDate" class="formField">
+        </div>
+    </div>
+    <input type="submit" value="Speichern">
+</form>
+
+<button class="button-cancel">Abbrechen</button>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+.form-rows{
+    margin-right: 2rem;
+}
+
+.row {
+    margin-top: 6px;
+    display: flex;
+}
+
+.row > label {
+    float: left;
+    min-width: 10rem;
+}
+
+input[type=text] {
+    float: left;
+    width: 40rem;
+}
+
+textarea[type=text] {
+    float: left;
+    width: 40rem;
+}
+
+input[type=date] {
+    float: left;
+    width: 10rem;
+}
+
+input[type=submit] {
+    width: 100%;
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+.button-cancel {
+    float: right;
+}
