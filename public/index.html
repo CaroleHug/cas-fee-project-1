@@ -1,33 +1,41 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <title>Note Pro</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js" integrity="sha256-/PJBs6QWvXijOFIX04kZpLb6ZtSQckdOIavLWKKOgXU=" crossorigin="anonymous" defer></script>
-  <script src="scripts/index.js" type="module"></script>
+    <meta charset="UTF-8">
+    <title>Note Pro</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js"
+            integrity="sha256-/PJBs6QWvXijOFIX04kZpLb6ZtSQckdOIavLWKKOgXU=" crossorigin="anonymous" defer></script>
+    <script src="scripts/index.js" type="module"></script>
 
-  <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="styles/index.css">
 </head>
 <body>
-<button>Create new Note</button>
-<label for="mode"></label>
-<select name="mode" id="mode">
-  <option value="darkMode">Dark Mode</option>
-  <option value="whiteMode">Default Mode</option>
-</select>
-<section id="existingNotes">
-  <div class="grid-container">
-    <input type="radio" name="order">By finish Date</input>
-    <input type="radio" name="order">By created Date</input>
-    <input type="radio" name="order">By importance</input>
-  </div>
 
-  <div class="finished">
-    <input type="radio" name="finished">Show finished </input>
-  </div>
-</section>
+<!--TODO: Refactor namings!!-->
+<div class="left-right">
+    <div>
+        <button>Create new Note</button>
+    </div>
+    <div>
+        <label for="mode"></label>
+        <select name="mode" id="mode">
+            <option value="darkMode">Dark Mode</option>
+            <option value="whiteMode">Default Mode</option>
+        </select>
+    </div>
+</div>
 
+<div class="left-right">
+    <div class="grid-container">
+        <input type="radio" name="order">By finish Date</input>
+        <input type="radio" name="order">By created Date</input>
+        <input type="radio" name="order">By importance</input>
+    </div>
 
+    <div class="finished">
+        <input type="radio" name="finished">Show finished </input>
+    </div>
+</div>
 
 </body>
 </html>

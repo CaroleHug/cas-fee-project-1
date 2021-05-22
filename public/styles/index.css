@@ -11,4 +11,8 @@ body {
     display: flex;
 }
 
-
+.left-right {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
