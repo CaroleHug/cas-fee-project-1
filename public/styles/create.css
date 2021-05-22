@@ -12,6 +12,14 @@
     min-width: 10rem;
 }
 
+input {
+    font-family: 'Shadows Into Light', cursive;
+}
+
+textarea {
+    font-family: 'Shadows Into Light', cursive;
+}
+
 input[type=text] {
     float: left;
     width: 40rem;
@@ -31,6 +39,7 @@ input[type=submit] {
     width: 100%;
     margin-top: 6px;
     margin-bottom: 6px;
+    font-family: 'Roboto', sans-serif;
 }
 
 .button-cancel {

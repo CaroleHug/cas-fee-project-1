@@ -4,6 +4,12 @@
 
 body {
     padding: 2rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+}
+
+button {
+    cursor: pointer;
 }
 
 .grid-container {
@@ -17,8 +23,34 @@ body {
     margin-bottom: 24px;
 }
 
-.notes-row {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 6px;
+.notes-details {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 5fr 1fr;
+    font-family: 'Shadows Into Light', cursive;
+    font-weight: normal;
 }
+
+.notes-details-finished {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.notes-details-title {
+    font-weight: bold;
+}
+
+.notes-details-end-date {
+    font-weight: bold;
+}
+
+.notes-details-description {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.notes-details-edit {
+    grid-column: 3 / span 2;
+    grid-row: 1 / span 2;
+}
+
