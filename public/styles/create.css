@@ -45,3 +45,18 @@ input[type=submit] {
 .button-cancel {
     float: right;
 }
+
+.row svg {
+    max-height: 26px;
+    width: auto;
+    display: inline;
+    color: grey;
+}
+
+.row svg path {
+    fill: currentColor;
+}
+
+.row svg:hover {
+    color: red;
+}
