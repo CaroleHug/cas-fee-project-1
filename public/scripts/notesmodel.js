@@ -17,6 +17,3 @@ function compareNotes(s1, s2) {
 function notesSorted() {
     return [...notes].sort(compareNotes);
 }
-
-
-

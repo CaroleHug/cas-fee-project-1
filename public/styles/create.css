@@ -47,7 +47,7 @@ input[type=submit] {
 }
 
 .row svg {
-    max-height: 26px;
+    height: 36px;
     width: auto;
     display: inline;
     color: grey;

@@ -52,7 +52,7 @@
                         <div class="notes-details-end-date">${notes.endDate !== '' ? notes.endDate : "Irgendwann"}</div>
                         <div class="notes-details-title">${notes.title}</div>
                         <div class="notes-details-finished">
-                            <input type="checkbox">${notes.finished ? 'Finished [' + notes.finishDate + ']' : 'Finished'}</input>
+                            <input type="checkbox" checked=${notes.finished ? 'checked' : 'unchecked'}>${notes.finished ? 'Finished [' + notes.finishDate + ']' : 'Finished'}</input>
                         </div>
                         <div class="notes-details-description">${notes.description}</div>
                         <div class="notes-details-edit"><button>Edit</button></div>
