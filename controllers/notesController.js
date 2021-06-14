@@ -1,9 +1,5 @@
 import {noteStore} from '../services/noteStore.js';
 
-export function showNotes(req, res) {
-    res.json({ id: 42 });
-};
-
 export function createNote(req, res) {
     console.log('notesController - createNote start');
     noteStore.add(req.body.title, req.body.description, req.body.priority, req.body.finished,
