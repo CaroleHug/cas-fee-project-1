@@ -6,12 +6,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js"
             integrity="sha256-/PJBs6QWvXijOFIX04kZpLb6ZtSQckdOIavLWKKOgXU=" crossorigin="anonymous" defer></script>
     <script src="scripts/index.js" type="module"></script>
+    <script src="services/note-service.js" defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&family=Shadows+Into+Light&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/index.css">
     <link rel="stylesheet" href="styles/create.css">
 </head>
 <body>
-<form id="newNote" action="http://localhost:3000/notes/" method="POST">
+<form id="newNote">
     <div class="form-rows">
         <div class="row">
             <label for="title" class="formLabel">Titel</label>
@@ -46,8 +47,9 @@
             <input type="date" id="endDate" name="endDate" class="formField">
         </div>
     </div>
-    <input type="submit" value="Speichern">
+
 </form>
+<button value="save" onclick="submitNote()">Speichern</button>
 
 <a href="./index.html" class="button-cancel">Abbrechen</a>
 

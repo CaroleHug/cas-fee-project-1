@@ -6,16 +6,19 @@ export function showNotes(req, res) {
 
 export function createNote(req, res) {
     console.log('notesController - createNote start');
-    noteStore.add(req.body.title, req.body.description, req.body.priority, req.body.finished, req.body.date, (err, note) => {
-        res.json({ errortext: 'could not add new note' });
+    noteStore.add(req.body.title, req.body.description, req.body.priority, req.body.finished,
+        req.body.date, (err, note) => {
+        res.json({message: 'SUCCESS'});
     });
     console.log('notesController - createNote end');
 }
 
 export function getNotes(req, res) {
     console.log('notesController - getNotes start');
-    noteStore.all((err, note) => {
-        res.json({ errortext: 'could not add new note' });
+    noteStore.all((err, notes) => {
+        if (notes) {
+            res.json(notes);
+        }
     });
     console.log('notesController - getNotes end');
 }
