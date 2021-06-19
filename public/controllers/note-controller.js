@@ -8,7 +8,6 @@ export class NoteController {
             this.noteContainer = document.getElementById('note-container');
             this.noteContainer = document.getElementById('note-container');
 
-
             this.orderCriterias = document.getElementsByName('order');
         }
 
@@ -43,7 +42,7 @@ export class NoteController {
             this.newNoteSubmit.addEventListener('click', (event) => {
                 this.setCurrentFormValues();
                 if (document.activeElement) {
-                    noteService.submitNote(new Note(this.newTitle, this.newDescription, 2, false, this.newDate)); //TODO remove hardcoded elements
+                    noteService.submitNote(new Note(this.newTitle, this.newDescription, this.newPriority, false, this.newEndDate)); //TODO remove hardcoded elements
                     window.location.href = 'http://localhost:3000/index.html';
                 }
                 event.preventDefault();
@@ -72,7 +71,11 @@ export class NoteController {
     setCurrentFormValues() {
         this.newTitle = document.getElementById('title').value;
         this.newDescription = document.getElementById('description').value;
-        this.newDate = document.getElementById('endDate').value;
+        this.newEndDate = document.getElementById('endDate').value;
+        const priority = [...document.getElementsByName('priority')].filter((item) => item.checked)[0];
+        if (priority) {
+            this.newPriority = priority.value;
+        }
     }
 
     isCreatePage() {

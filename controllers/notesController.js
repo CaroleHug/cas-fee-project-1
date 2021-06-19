@@ -2,10 +2,12 @@ import {noteStore} from '../services/noteStore.js';
 
 export function createNote(req, res) {
     console.log('notesController - createNote start');
+
     noteStore.add(req.body.title, req.body.description, req.body.priority, req.body.finished,
-        req.body.date, (err, note) => {
+        req.body.endDate, (err, note) => {
         res.json({message: 'SUCCESS'});
     });
+    console.log(req.body);
     console.log('notesController - createNote end');
 }
 
@@ -16,11 +18,14 @@ export function getNotes(req, res) {
             let sortedNotes = [];
             switch (req.query.order) {
                 case 'endDate':
-                    sortedNotes = [...notes].sort((s1, s2) => s2.date - s1.date);
+                    sortedNotes = [...notes].sort((s1, s2) => new Date(s2.endDate) - new Date(s1.endDate));
+                    break;
+                case 'creationDate':
+                    sortedNotes = [...notes].sort((s1, s2) => s2.creationDate - s1.creationDate);
                     break;
                 case 'importance':
                 default:
-                    sortedNotes = [...notes].sort((s1, s2) => s2.priority - s1.priority);
+                    sortedNotes = [...notes].sort((s1, s2) => s2.priority - s1.priority).reverse();
                     break;
             }
 

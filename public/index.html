@@ -18,7 +18,7 @@
         <div>
         {{#each notes}}
             <div class="notes-details">
-                    <div class="notes-details-end-date">{{this.date}}</div>
+                    <div class="notes-details-end-date">{{this.endDate}}</div>
                     <div class="notes-details-title">{{this.title}}</div>
                 <div class="notes-details-finished">
                    <input type="checkbox" checked="{{this.finished}}">Finished</input>
@@ -51,8 +51,8 @@
 
 <div class="left-right">
     <div class="grid-container">
-        <input type="radio" name="order" value="finishDate">By finish Date</input>
-        <input type="radio" name="order" value="endDate">By created Date</input>
+        <input type="radio" name="order" value="endDate">By finish Date</input>
+        <input type="radio" name="order" value="creationDate">By created Date</input>
         <input type="radio" name="order" value="importance">By importance</input>
     </div>
 

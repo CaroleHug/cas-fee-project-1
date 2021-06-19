@@ -3,19 +3,21 @@ import Datastore from 'nedb';
 const db = new Datastore({filename: './data/note.db', autoload: true});
 
 class Note {
-    constructor(title, description, priority, finished, date) {
+    constructor(title, description, priority, finished, endDate, creationDate) {
         this.title = title;
         this.description = description;
         this.priority = priority;
         this.finished = finished;
-        this.date = date;
+        this.endDate = endDate;
+        this.creationDate = creationDate;
     }
 }
 
 class NoteStore {
-    add(title, description, priority = 2, finished = false, date, callback) {
+    add(title, description, priority = 2, finished = false, endDate, callback) {
         console.log('noteStore - add new Note start');
-        const note = new Note(title, description, priority, finished, date);
+        const creationDate = new Date().valueOf();
+        const note = new Note(title, description, priority, finished, endDate, creationDate);
         db.insert(note, (err, newDoc) => {
             console.log('noteStore - insert new note');
             // if (callback) {

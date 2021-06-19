@@ -5,7 +5,6 @@ export class NoteService {
 
    submitNote(note) {
         const xhr = new XMLHttpRequest();
-        console.log(note);
         xhr.onreadystatechange = function () {
             if (4 === xhr.readyState) {
                 if (xhr.status === 200) {

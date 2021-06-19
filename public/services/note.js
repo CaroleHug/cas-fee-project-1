@@ -1,10 +1,10 @@
 export class Note {
-    constructor(title, description, priority, finished, date) {
+    constructor(title, description, priority, finished, endDate) {
         this.title = title;
         this.description = description;
         this.priority = priority;
         this.finished = finished;
-        this.date = date;
+        this.endDate = endDate;
     }
 
     toJSON() {
@@ -13,7 +13,7 @@ export class Note {
             description: this.description,
             priority: this.priority,
             finished: this.finished,
-            date: this.date,
+            endDate: this.endDate,
         };
     }
 }
