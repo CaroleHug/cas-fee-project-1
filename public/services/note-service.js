@@ -26,9 +26,6 @@ export class NoteService {
             if (4 === xhr.readyState) {
                 if (xhr.status === 200) {
                     this.notes = xhr.response;
-                    console.log(this.notes);
-                    console.log('type');
-                    console.log('31');
                     _callback(this.notes);
                 } else {
                     console.log('There was a problem with the request.');

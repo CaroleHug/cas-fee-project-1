@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Note Pro</title>
-    <script src="js/utils.js" defer></script>
+    <link rel="shortcut icon" href="#">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js"
             integrity="sha256-/PJBs6QWvXijOFIX04kZpLb6ZtSQckdOIavLWKKOgXU=" crossorigin="anonymous" defer></script>
     <script src="scripts/index.js" type="module"></script>
-<!--    <script src="services/note-service.js" defer></script>-->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&family=Shadows+Into+Light&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/index.css">
     <script src="controllers/note-controller.js" type="module" defer></script>
@@ -63,39 +62,6 @@
 </div>
 
 <div>
-    <div id="notes"></div>
-    <script src="./scripts/notesmodel.js"></script>
-<!--    <script>-->
-<!--        //DOM Refs-->
-<!--        const notesElement = document.querySelector('#notes');-->
-
-
-<!--        // Rendering-->
-<!--        function createNotesHtml(notes) {-->
-<!--            return notes.map(notes =>-->
-<!--                `<div class="notes-details">-->
-<!--                        <div class="notes-details-end-date">${notes.endDate !== '' ? notes.endDate : "Irgendwann"}</div>-->
-<!--                        <div class="notes-details-title">${notes.title}</div>-->
-<!--                        <div class="notes-details-finished">-->
-<!--                            <input type="checkbox" checked=${notes.finished ? 'checked' : 'unchecked'}>${notes.finished ? 'Finished [' + notes.finishDate + ']' : 'Finished'}</input>-->
-<!--                        </div>-->
-<!--                        <div class="notes-details-description">${notes.description}</div>-->
-<!--                        <div class="notes-details-edit"><button>Edit</button></div>-->
-<!--             </div>`-->
-<!--            )-->
-<!--                .join('');-->
-<!--        }-->
-
-<!--        function renderNotes() {-->
-<!--            const notesHtml = createNotesHtml(notesSorted());-->
-<!--            notesElement.innerHTML = notesHtml;-->
-<!--        }-->
-
-<!--        renderNotes();-->
-<!--    </script>-->
-
-
-
     <section class="card" id="note-container">
     </section>
 

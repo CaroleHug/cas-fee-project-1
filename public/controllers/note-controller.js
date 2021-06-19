@@ -9,10 +9,7 @@ export class NoteController {
             this.noteContainer = document.getElementById('note-container');
 
 
-            this.orderCriterias = document.querySelector('input[name="order"]');
-            this.orderCriterias2 = document.getElementsByName('order');
-            console.log(this.orderCriterias2);
-            // this.selectedOrder = document.querySelector('input[name="order"]:checked').value;
+            this.orderCriterias = document.getElementsByName('order');
         }
 
         if (this.isCreatePage()) {
@@ -27,7 +24,6 @@ export class NoteController {
             {notes: newNotes},
             {allowProtoPropertiesByDefault: true},
         );
-        console.log('shownotes');
     }
 
     initEventHandlers() {
@@ -36,7 +32,7 @@ export class NoteController {
                 const noteId = Number(event.target.dataset.id);
             });
 
-            this.orderCriterias2.forEach((radio) => {
+            this.orderCriterias.forEach((radio) => {
                 radio.addEventListener('click', () => {
                     this.getNotes(radio.value);
                 });
