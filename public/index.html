@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Note Pro</title>
+    <script src="js/utils.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js"
             integrity="sha256-/PJBs6QWvXijOFIX04kZpLb6ZtSQckdOIavLWKKOgXU=" crossorigin="anonymous" defer></script>
     <script src="scripts/index.js" type="module"></script>
-    <script src="services/note-service.js" defer></script>
+<!--    <script src="services/note-service.js" defer></script>-->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&family=Shadows+Into+Light&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/index.css">
+    <script src="controllers/note-controller.js" type="module" defer></script>
 </head>
 <body>
 
@@ -69,6 +71,13 @@
 
         renderNotes();
     </script>
+
+
+    <script id="note-list-template" type="text/x-handlebars-template">
+
+    </script>
+    <section class="card" id="note-container">
+    </section>
 </div>
 
 </body>
