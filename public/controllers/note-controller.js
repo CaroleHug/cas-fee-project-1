@@ -27,21 +27,18 @@ export class NoteController {
             {notes: newNotes},
             {allowProtoPropertiesByDefault: true},
         );
+        console.log('shownotes');
     }
 
     initEventHandlers() {
         if (!this.isCreatePage()) {
             this.noteContainer.addEventListener('click', (event) => {
                 const noteId = Number(event.target.dataset.id);
-                console.log(noteId);
             });
 
             this.orderCriterias2.forEach((radio) => {
-                radio.addEventListener('click', (event) => {
-                    // this.showNotes({title: '123', description: 'false'});
-                    console.log(radio.value);
-                    console.log(noteService.notes);
-                    this.orderNotes(radio.value);
+                radio.addEventListener('click', () => {
+                    this.getNotes(radio.value);
                 });
             });
         }
@@ -65,15 +62,15 @@ export class NoteController {
     initialize() {
         this.initEventHandlers();
         if (!this.isCreatePage()) {
-            this.getNotes();
+            this.getNotes('importance');
         }
     }
 
-    getNotes() {
+    getNotes(order) {
         const self = this;
         noteService.getNotes((notes) => {
             self.renderNoteView(notes);
-        });
+        }, order);
     }
 
     setCurrentFormValues() {
@@ -85,36 +82,6 @@ export class NoteController {
     isCreatePage() {
         return window.location.href.includes('create');
     }
-
-    orderNotes(order) {
-        switch (order) {
-            case 'finishDate':
-                this.showNotes([...noteService.notes].sort(this.compareNotesFinishDate));
-                break;
-            case 'endDate':
-                this.showNotes([...noteService.notes].sort(this.compareNotesCreatedDate));
-                break;
-            case 'importance':
-            default:
-                console.log(noteService.notes);
-                console.log([...noteService.notes].sort(this.compareNotesByImportance));
-                this.showNotes([...noteService.notes].sort(this.compareNotesByImportance));
-                break;
-        }
-    }
-
-    compareNotesFinishDate(s1, s2) {
-        return s2.date - s1.date;
-    }
-
-    compareNotesCreatedDate(s1, s2) {
-        return s2.date - s1.date;
-    }
-
-    compareNotesByImportance(s1, s2) {
-        return s2.date - s1.date;
-    }
-
 }
 
 // create one-and-only instance

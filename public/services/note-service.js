@@ -3,7 +3,7 @@ export class NoteService {
         this.notes = [];
     }
 
-   submitNote (note) {
+   submitNote(note) {
         const xhr = new XMLHttpRequest();
         console.log(note);
         xhr.onreadystatechange = function () {
@@ -20,7 +20,7 @@ export class NoteService {
         xhr.send(JSON.stringify(note.toJSON()));
     }
 
-    getNotes(_callback) {
+    getNotes(_callback, order) {
         const xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function () {
             if (4 === xhr.readyState) {
@@ -28,7 +28,7 @@ export class NoteService {
                     this.notes = xhr.response;
                     console.log(this.notes);
                     console.log('type');
-                    console.log(typeof this.notes);
+                    console.log('31');
                     _callback(this.notes);
                 } else {
                     console.log('There was a problem with the request.');
@@ -36,10 +36,12 @@ export class NoteService {
                 }
             }
         };
+        // let url = `notes?order=${order}`;
+
         xhr.responseType = 'json';
-        xhr.open('GET', 'notes');
+        xhr.open('GET', `notes?order=${order}`);
         xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-        xhr.send();
+        xhr.send('order=importance');
     }
 }
 

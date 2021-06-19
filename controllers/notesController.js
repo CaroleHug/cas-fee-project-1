@@ -13,7 +13,18 @@ export function getNotes(req, res) {
     console.log('notesController - getNotes start');
     noteStore.all((err, notes) => {
         if (notes) {
-            res.json(notes);
+            let sortedNotes = [];
+            switch (req.query.order) {
+                case 'endDate':
+                    sortedNotes = [...notes].sort((s1, s2) => s2.date - s1.date);
+                    break;
+                case 'importance':
+                default:
+                    sortedNotes = [...notes].sort((s1, s2) => s2.priority - s1.priority);
+                    break;
+            }
+
+            res.json(sortedNotes);
         }
     });
     console.log('notesController - getNotes end');
