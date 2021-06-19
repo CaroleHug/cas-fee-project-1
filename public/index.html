@@ -11,6 +11,30 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&family=Shadows+Into+Light&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/index.css">
     <script src="controllers/note-controller.js" type="module" defer></script>
+
+    <script id="note-list-template" type="text/x-handlebars-template">
+        <header>
+            <h1>Notes</h1>
+        </header>
+        <div class="notes-details">
+        {{#each notes}}
+            <div>
+                <div>
+                    <div class="notes-details-end-date">{{this.endDate}}</div>
+                    <span>{{this.title}}</span>
+                <div class="notes-details-finished">
+                   <input type="checkbox" checked="{{this.finished}}></input>
+                </div>
+                    <div class="notes-details-description">{{this.description}}</div>
+                </div>
+                <div class="notes-details-edit" id="notes-details-{{this.id}}"><button>Edit</button></div>
+            </div>
+        {{/each}}
+        </div>
+        {{#unless notes.length}}
+            No notes found
+        {{/unless}}
+    </script>
 </head>
 <body>
 
@@ -43,41 +67,40 @@
 <div>
     <div id="notes"></div>
     <script src="./scripts/notesmodel.js"></script>
-    <script>
-        //DOM Refs
-        const notesElement = document.querySelector('#notes');
+<!--    <script>-->
+<!--        //DOM Refs-->
+<!--        const notesElement = document.querySelector('#notes');-->
 
 
-        // Rendering
-        function createNotesHtml(notes) {
-            return notes.map(notes =>
-                `<div class="notes-details">
-                        <div class="notes-details-end-date">${notes.endDate !== '' ? notes.endDate : "Irgendwann"}</div>
-                        <div class="notes-details-title">${notes.title}</div>
-                        <div class="notes-details-finished">
-                            <input type="checkbox" checked=${notes.finished ? 'checked' : 'unchecked'}>${notes.finished ? 'Finished [' + notes.finishDate + ']' : 'Finished'}</input>
-                        </div>
-                        <div class="notes-details-description">${notes.description}</div>
-                        <div class="notes-details-edit"><button>Edit</button></div>
-             </div>`
-            )
-                .join('');
-        }
+<!--        // Rendering-->
+<!--        function createNotesHtml(notes) {-->
+<!--            return notes.map(notes =>-->
+<!--                `<div class="notes-details">-->
+<!--                        <div class="notes-details-end-date">${notes.endDate !== '' ? notes.endDate : "Irgendwann"}</div>-->
+<!--                        <div class="notes-details-title">${notes.title}</div>-->
+<!--                        <div class="notes-details-finished">-->
+<!--                            <input type="checkbox" checked=${notes.finished ? 'checked' : 'unchecked'}>${notes.finished ? 'Finished [' + notes.finishDate + ']' : 'Finished'}</input>-->
+<!--                        </div>-->
+<!--                        <div class="notes-details-description">${notes.description}</div>-->
+<!--                        <div class="notes-details-edit"><button>Edit</button></div>-->
+<!--             </div>`-->
+<!--            )-->
+<!--                .join('');-->
+<!--        }-->
 
-        function renderNotes() {
-            const notesHtml = createNotesHtml(notesSorted());
-            notesElement.innerHTML = notesHtml;
-        }
+<!--        function renderNotes() {-->
+<!--            const notesHtml = createNotesHtml(notesSorted());-->
+<!--            notesElement.innerHTML = notesHtml;-->
+<!--        }-->
 
-        renderNotes();
-    </script>
+<!--        renderNotes();-->
+<!--    </script>-->
 
 
-    <script id="note-list-template" type="text/x-handlebars-template">
 
-    </script>
     <section class="card" id="note-container">
     </section>
+
 </div>
 
 </body>

@@ -20,18 +20,23 @@ export class NoteService {
         xhr.send(JSON.stringify(note.toJSON()));
     }
 
-    getNotes() {
+    getNotes(_callback) {
         const xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function () {
             if (4 === xhr.readyState) {
                 if (xhr.status === 200) {
                     this.notes = xhr.response;
-                    console.log(xhr.responseText);
+                    console.log(this.notes);
+                    console.log('type');
+                    console.log(typeof this.notes);
+                    _callback(this.notes);
                 } else {
                     console.log('There was a problem with the request.');
+                    _callback();
                 }
             }
         };
+        xhr.responseType = 'json';
         xhr.open('GET', 'notes');
         xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
         xhr.send();

@@ -15,11 +15,16 @@ export class NoteController {
         }
     }
 
-    showNotes() {
+    showNotes(notes2) {
+        // console.log(this.noteContainer);
         this.noteContainer.innerHTML = this.noteTemplateCompiled(
-            {notes: noteService.notes},
+            {notes: notes2},
             {allowProtoPropertiesByDefault: true},
         );
+        console.log('notes2');
+        console.log(notes2);
+        console.log(this.noteContainer);
+
     }
 
     initEventHandlers() {
@@ -42,8 +47,17 @@ export class NoteController {
         }
     }
 
+    renderNoteView(notes, self) {
+        this.showNotes(notes, self);
+    }
+
     initialize() {
+        // let functionObject = {renderNote: }
         this.initEventHandlers();
+        const self = this;
+        noteService.getNotes(function(notes) {
+            self.renderNoteView(notes);
+        });
     }
 
     setCurrentFormValues() {
