@@ -3,7 +3,7 @@ export class NoteService {
         this.notes = [];
     }
 
-   submitNote(note) {
+   submitNote (note) {
         const xhr = new XMLHttpRequest();
         console.log(note);
         xhr.onreadystatechange = function () {
@@ -15,11 +15,6 @@ export class NoteService {
                 }
             }
         };
-        // const formData = {
-        //     title: document.getElementById('title').value,
-        //     description: document.getElementById('description').value,
-        //     date: document.getElementById('endDate').value,
-        // };
         xhr.open('POST', 'notes');
         xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
         xhr.send(JSON.stringify(note.toJSON()));
