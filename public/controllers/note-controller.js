@@ -6,6 +6,13 @@ export class NoteController {
         if (!this.isCreatePage()) {
             this.noteTemplateCompiled = Handlebars.compile(document.getElementById('note-list-template').innerHTML);
             this.noteContainer = document.getElementById('note-container');
+            this.noteContainer = document.getElementById('note-container');
+
+
+            this.orderCriterias = document.querySelector('input[name="order"]');
+            this.orderCriterias2 = document.getElementsByName('order');
+            console.log(this.orderCriterias2);
+            // this.selectedOrder = document.querySelector('input[name="order"]:checked').value;
         }
 
         if (this.isCreatePage()) {
@@ -15,16 +22,11 @@ export class NoteController {
         }
     }
 
-    showNotes(notes2) {
-        // console.log(this.noteContainer);
+    showNotes(newNotes) {
         this.noteContainer.innerHTML = this.noteTemplateCompiled(
-            {notes: notes2},
+            {notes: newNotes},
             {allowProtoPropertiesByDefault: true},
         );
-        console.log('notes2');
-        console.log(notes2);
-        console.log(this.noteContainer);
-
     }
 
     initEventHandlers() {
@@ -32,6 +34,15 @@ export class NoteController {
             this.noteContainer.addEventListener('click', (event) => {
                 const noteId = Number(event.target.dataset.id);
                 console.log(noteId);
+            });
+
+            this.orderCriterias2.forEach((radio) => {
+                radio.addEventListener('click', (event) => {
+                    // this.showNotes({title: '123', description: 'false'});
+                    console.log(radio.value);
+                    console.log(noteService.notes);
+                    this.orderNotes(radio.value);
+                });
             });
         }
 
@@ -47,15 +58,20 @@ export class NoteController {
         }
     }
 
-    renderNoteView(notes, self) {
-        this.showNotes(notes, self);
+    renderNoteView(notes) {
+        this.showNotes(notes);
     }
 
     initialize() {
-        // let functionObject = {renderNote: }
         this.initEventHandlers();
+        if (!this.isCreatePage()) {
+            this.getNotes();
+        }
+    }
+
+    getNotes() {
         const self = this;
-        noteService.getNotes(function(notes) {
+        noteService.getNotes((notes) => {
             self.renderNoteView(notes);
         });
     }
@@ -69,6 +85,36 @@ export class NoteController {
     isCreatePage() {
         return window.location.href.includes('create');
     }
+
+    orderNotes(order) {
+        switch (order) {
+            case 'finishDate':
+                this.showNotes([...noteService.notes].sort(this.compareNotesFinishDate));
+                break;
+            case 'endDate':
+                this.showNotes([...noteService.notes].sort(this.compareNotesCreatedDate));
+                break;
+            case 'importance':
+            default:
+                console.log(noteService.notes);
+                console.log([...noteService.notes].sort(this.compareNotesByImportance));
+                this.showNotes([...noteService.notes].sort(this.compareNotesByImportance));
+                break;
+        }
+    }
+
+    compareNotesFinishDate(s1, s2) {
+        return s2.date - s1.date;
+    }
+
+    compareNotesCreatedDate(s1, s2) {
+        return s2.date - s1.date;
+    }
+
+    compareNotesByImportance(s1, s2) {
+        return s2.date - s1.date;
+    }
+
 }
 
 // create one-and-only instance
