@@ -32,7 +32,6 @@ export class NoteService {
                 }
             }
         };
-        // let url = `notes?order=${order}`;
 
         xhr.responseType = 'json';
         xhr.open('GET', `notes?order=${order}`);

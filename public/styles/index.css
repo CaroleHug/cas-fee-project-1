@@ -121,3 +121,8 @@ body {
     grid-column: 3 / span 2;
     grid-row: 1 / span 2;
 }
+
+.mandatory-field::after {
+    content: " *";
+    color: red;
+}
