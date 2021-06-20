@@ -3,11 +3,11 @@ import {Note} from '../services/note.js';
 
 export class NoteController {
     constructor() {
+
         if (!this.isCreatePage()) {
             this.noteTemplateCompiled = Handlebars.compile(document.getElementById('note-list-template').innerHTML);
             this.noteContainer = document.getElementById('note-container');
             this.noteContainer = document.getElementById('note-container');
-
             this.orderCriterias = document.getElementsByName('order');
         }
 
@@ -16,6 +16,7 @@ export class NoteController {
             this.newNoteSubmit = document.getElementById('new-note-submit');
             this.setCurrentFormValues();
         }
+        this.theme = document.getElementById('theme');
     }
 
     showNotes(newNotes) {
@@ -26,6 +27,10 @@ export class NoteController {
     }
 
     initEventHandlers() {
+        this.theme.addEventListener('change', () => {
+            document.body.classList.toggle('dark-theme');
+        });
+
         if (!this.isCreatePage()) {
             this.noteContainer.addEventListener('click', (event) => {
                 const noteId = Number(event.target.dataset.id);
@@ -80,6 +85,13 @@ export class NoteController {
 
     isCreatePage() {
         return window.location.href.includes('create');
+    }
+
+    isChecked(isChecked) {
+        if(isChecked === 'true') {
+            return 'checked';
+        }
+        return 'unchecked';
     }
 }
 

@@ -21,7 +21,8 @@
                     <div class="notes-details-end-date">{{this.endDate}}</div>
                     <div class="notes-details-title">{{this.title}}</div>
                 <div class="notes-details-finished">
-                   <input type="checkbox" checked="{{this.finished}}">Finished</input>
+                   <input type="checkbox" [checked]=this.finished >Finished</input>
+                    {{this.finished}}
                 </div>
                     <div class="notes-details-description">{{this.description}}</div>
                 <div class="notes-details-edit" id="notes-details-{{this.id}}"><button>Edit</button></div>
@@ -41,19 +42,19 @@
         <a href="./create.html">Create new Note</a>
     </div>
     <div>
-        <label for="mode"></label>
-        <select name="mode" id="mode">
+        <label for="theme"></label>
+        <select name="theme" id="theme">
             <option value="darkMode">Dark Mode</option>
-            <option value="whiteMode">Default Mode</option>
+            <option value="whiteMode" selected="selected">Default Mode</option>
         </select>
     </div>
 </div>
 
 <div class="left-right">
     <div class="grid-container">
-        <input type="radio" name="order" value="endDate">By finish Date</input>
-        <input type="radio" name="order" value="creationDate">By created Date</input>
-        <input type="radio" name="order" value="importance">By importance</input>
+        <input type="radio" name="order" id="order-end-date" value="endDate">By finish Date</input>
+        <input type="radio" name="order" id="order-creation-date" value="creationDate">By created Date</input>
+        <input type="radio" name="order" id="order-importance" value="importance">By importance</input>
     </div>
 
     <div class="finished">

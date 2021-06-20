@@ -1,5 +1,72 @@
+:root {
+    background: #f0eded;
+    color: #1c1b1b;
+}
+
+html,
+body {
+    margin: 0;
+    height: 100%;
+}
+
+:root .dark-theme {
+    background: #1c1b1b;
+    color: #f0eded;
+}
+
 * {
     box-sizing: border-box;
+}
+
+.dark-theme a {
+    color: #8532a8;
+}
+
+.dark-theme input:checked {
+    filter: hue-rotate(50deg);
+}
+
+button {
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    display: inline-block;
+    background-color: lightgrey;
+    cursor: pointer;
+}
+
+.dark-theme button {
+    background-color: #8532a8;
+}
+
+.dark-theme button:hover {
+    background-color: #6532a8;
+}
+
+.dark-theme ::selection {
+    color: white;
+    background: #6532a8;
+}
+
+h1 {
+    font-size: xx-large;
+    padding-top: 2rem;
+}
+
+.dark-theme h1 {
+    color: #6532a8;
+}
+
+select {
+    border: none;
+    background-color: lightgrey;
+    padding: 15px 32px;
+    text-align: center;
+    display: inline-block;
+}
+
+.dark-theme select {
+    background-color: #8532a8;
 }
 
 body {
@@ -7,10 +74,6 @@ body {
     font-family: 'Roboto', sans-serif;
     font-weight: bold;
     font-size: large;
-}
-
-button {
-    cursor: pointer;
 }
 
 .grid-container {
@@ -58,4 +121,3 @@ button {
     grid-column: 3 / span 2;
     grid-row: 1 / span 2;
 }
-
