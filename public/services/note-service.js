@@ -36,7 +36,7 @@ export class NoteService {
         xhr.responseType = 'json';
         xhr.open('GET', `notes?order=${order}`);
         xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-        xhr.send('order=importance');
+        xhr.send();
     }
 }
 

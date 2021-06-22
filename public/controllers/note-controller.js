@@ -3,20 +3,24 @@ import {Note} from '../services/note.js';
 
 export class NoteController {
     constructor() {
-
         if (!this.isCreatePage()) {
             this.noteTemplateCompiled = Handlebars.compile(document.getElementById('note-list-template').innerHTML);
             this.noteContainer = document.getElementById('note-container');
             this.noteContainer = document.getElementById('note-container');
             this.orderCriterias = document.getElementsByName('order');
+            this.theme = document.getElementById('theme');
+            this.createNewNote = document.getElementById('create-new-note');
+
+            this.editButtons = document.getElementsByName('notes-details-edit');
+            console.log(this.editButtons);
         }
 
         if (this.isCreatePage()) {
             this.newNote = document.getElementById('newNote');
             this.newNoteSubmit = document.getElementById('new-note-submit');
             this.setCurrentFormValues();
+            this.readUrlParams();
         }
-        this.theme = document.getElementById('theme');
     }
 
     showNotes(newNotes) {
@@ -24,14 +28,15 @@ export class NoteController {
             {notes: newNotes},
             {allowProtoPropertiesByDefault: true},
         );
+        this.addEditButtonsEventListeners();
     }
 
     initEventHandlers() {
-        this.theme.addEventListener('change', () => {
-            document.body.classList.toggle('dark-theme');
-        });
-
         if (!this.isCreatePage()) {
+            this.theme.addEventListener('change', () => {
+                this.toggleTheme();
+            });
+
             this.noteContainer.addEventListener('click', (event) => {
                 const noteId = Number(event.target.dataset.id);
             });
@@ -40,6 +45,10 @@ export class NoteController {
                 radio.addEventListener('click', () => {
                     this.getNotes(radio.value);
                 });
+            });
+
+            this.createNewNote.addEventListener('click', () => {
+                window.location.href = `http://localhost:3000/create.html?theme=${this.theme.value}`;
             });
         }
 
@@ -53,6 +62,18 @@ export class NoteController {
                 event.preventDefault();
             });
         }
+    }
+
+    addEditButtonsEventListeners() {
+        this.editButtons.forEach((button) => {
+            button.addEventListener('click', () => {
+                window.location.href = `http://localhost:3000/create.html?theme=${this.theme.value}&id=${button.value}`;
+            });
+        });
+    }
+
+    test() {
+        console.log('test');
     }
 
     renderNoteView(notes) {
@@ -73,6 +94,10 @@ export class NoteController {
         }, order);
     }
 
+    toggleTheme() {
+        document.body.classList.toggle('dark-theme');
+    }
+
     setCurrentFormValues() {
         this.newTitle = document.getElementById('title').value;
         this.newDescription = document.getElementById('description').value;
@@ -87,8 +112,16 @@ export class NoteController {
         return window.location.href.includes('create');
     }
 
-    isChecked(isChecked) {
-        if(isChecked === 'true') {
+    readUrlParams() {
+        const urlSearchParams = new URLSearchParams(window.location.search);
+        this.theme = Object.fromEntries(urlSearchParams.entries()).theme;
+        if (this.theme && this.theme === 'darkMode') {
+            this.toggleTheme();
+        }
+    }
+
+    isChecked (isChecked) {
+        if (isChecked === 'true') {
             return 'checked';
         }
         return 'unchecked';

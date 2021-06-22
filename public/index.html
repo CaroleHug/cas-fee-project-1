@@ -21,11 +21,11 @@
                     <div class="notes-details-end-date">{{this.endDate}}</div>
                     <div class="notes-details-title">{{this.title}}</div>
                 <div class="notes-details-finished">
-                   <input type="checkbox" [checked]=this.finished >Finished</input>
+                   <input type="checkbox" {{#if this.isChecked}}checked{{/if}}>Finished</input>
                     {{this.finished}}
                 </div>
                     <div class="notes-details-description">{{this.description}}</div>
-                <div class="notes-details-edit" id="notes-details-{{this.id}}"><button>Edit</button></div>
+                <div class="notes-details-edit"><button name="notes-details-edit" id="notes-details-edit-{{this._id}}" value={{this._id}}>Edit</button></div>
             </div>
         {{/each}}
         </div>
@@ -39,7 +39,8 @@
 <!--TODO: Refactor namings!!-->
 <div class="left-right">
     <div>
-        <a href="./create.html">Create new Note</a>
+        <button id="create-new-note">Create new note</button>
+        <a href="./create.html?theme">Create new Note</a>
     </div>
     <div>
         <label for="theme"></label>
