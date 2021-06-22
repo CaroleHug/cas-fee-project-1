@@ -8,6 +8,7 @@ export class NoteController {
             this.noteContainer = document.getElementById('note-container');
             this.noteContainer = document.getElementById('note-container');
             this.orderCriterias = document.getElementsByName('order');
+            [...this.orderCriterias].find((item) => item.value === 'importance').checked = true;
             this.theme = document.getElementById('theme');
             this.createNewNote = document.getElementById('create-new-note');
 
