@@ -57,7 +57,7 @@ export class NoteController {
             this.newNoteSubmit.addEventListener('click', (event) => {
                 this.setCurrentFormValues();
                 if (this.newNote.reportValidity()) {
-                    noteService.submitNote(new Note(this.newTitle, this.newDescription, this.newPriority, false, this.newEndDate)); //TODO remove hardcoded elements
+                    noteService.submitNote(new Note(this.id, this.newTitle, this.newDescription, this.newPriority, false, this.newEndDate)); //TODO remove hardcoded elements
                     window.location.href = 'http://localhost:3000/index.html';
                 }
                 event.preventDefault();

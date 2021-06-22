@@ -39,6 +39,12 @@ class NoteStore {
         });
     }
 
+    update(id, title, description, priority = 2, finished = false, endDate, callback) {
+        db.update({_id: id}, {$set: {title, description, priority, finished, endDate}}, {returnUpdatedDocs: true}, (err, numDocs, doc) => {
+            callback(err, doc);
+        });
+    }
+
     get(id, callback) {
         db.findOne({_id: id}, (err, doc) => {
             callback(err, doc);

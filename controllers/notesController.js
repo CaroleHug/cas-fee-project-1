@@ -1,14 +1,23 @@
 import {noteStore} from '../services/noteStore.js';
 
 export function createNote(req, res) {
-    console.log('notesController - createNote start');
-
-    noteStore.add(req.body.title, req.body.description, req.body.priority, req.body.finished,
-        req.body.endDate, (err, note) => {
-        res.json({message: 'SUCCESS'});
-    });
-    console.log(req.body);
-    console.log('notesController - createNote end');
+    if(!req.body.id) {
+        console.log('notesController - createNote start');
+        noteStore.add(req.body.title, req.body.description, req.body.priority, req.body.finished,
+            req.body.endDate, (err, note) => {
+                res.json({message: 'SUCCESS'});
+            });
+        console.log(req.body);
+        console.log('notesController - createNote end');
+    } else {
+        console.log('notesController - updateNote start');
+        noteStore.update(req.body.id, req.body.title, req.body.description, req.body.priority, req.body.finished,
+            req.body.endDate, (err, note) => {
+                res.json({message: 'SUCCESS'});
+            });
+        console.log(req.body);
+        console.log('notesController - updateNote end');
+    }
 }
 
 export function getNotes(req, res) {
