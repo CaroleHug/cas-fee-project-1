@@ -24,6 +24,7 @@ export class NoteController {
     }
 
     showNotes(newNotes) {
+        this.notes = newNotes;
         this.noteContainer.innerHTML = this.noteTemplateCompiled(
             {notes: newNotes},
             {allowProtoPropertiesByDefault: true},
@@ -67,13 +68,10 @@ export class NoteController {
     addEditButtonsEventListeners() {
         this.editButtons.forEach((button) => {
             button.addEventListener('click', () => {
-                window.location.href = `http://localhost:3000/create.html?theme=${this.theme.value}&id=${button.value}`;
+                const selectedNote = this.notes.find((note) => note._id === button.value);
+                window.location.href = `http://localhost:3000/create.html?theme=${this.theme.value}&id=${button.value}&title=${selectedNote.title}&description=${selectedNote.description}&priority=${selectedNote.priority}&endDate=${selectedNote.endDate}`;
             });
         });
-    }
-
-    test() {
-        console.log('test');
     }
 
     renderNoteView(notes) {
@@ -114,7 +112,16 @@ export class NoteController {
 
     readUrlParams() {
         const urlSearchParams = new URLSearchParams(window.location.search);
-        this.theme = Object.fromEntries(urlSearchParams.entries()).theme;
+        const params = Object.fromEntries(urlSearchParams.entries());
+        this.theme = params.theme;
+        this.id = params.id;
+        document.getElementById('title').value = params.title ?? null;
+        document.getElementById('description').value = params.description ?? null;
+        if (params.priority) {
+            [...document.getElementsByName('priority')].find((item) => item.value === params.priority).checked = true;
+        }
+        document.getElementById('endDate').valueAsDate = new Date(params.endDate);
+
         if (this.theme && this.theme === 'darkMode') {
             this.toggleTheme();
         }
