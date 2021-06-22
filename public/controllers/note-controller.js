@@ -13,7 +13,7 @@ export class NoteController {
             this.createNewNote = document.getElementById('create-new-note');
 
             this.editButtons = document.getElementsByName('notes-details-edit');
-            console.log(this.editButtons);
+            this.readIndexUrlParams();
         }
 
         if (this.isCreatePage()) {
@@ -59,7 +59,8 @@ export class NoteController {
                 this.setCurrentFormValues();
                 if (this.newNote.reportValidity()) {
                     noteService.submitNote(new Note(this.id, this.newTitle, this.newDescription, this.newPriority, false, this.newEndDate)); //TODO remove hardcoded elements
-                    window.location.href = 'http://localhost:3000/index.html';
+                    // window.location.href = 'http://localhost:3000/index.html?theme=';
+                    window.location.href = `http://localhost:3000/index.html?theme=${this.selectedTheme}`;
                 }
                 event.preventDefault();
             });
@@ -114,7 +115,7 @@ export class NoteController {
     readUrlParams() {
         const urlSearchParams = new URLSearchParams(window.location.search);
         const params = Object.fromEntries(urlSearchParams.entries());
-        this.theme = params.theme;
+        this.selectedTheme = params.theme;
         this.id = params.id;
         document.getElementById('title').value = params.title ?? null;
         document.getElementById('description').value = params.description ?? null;
@@ -123,7 +124,18 @@ export class NoteController {
         }
         document.getElementById('endDate').valueAsDate = new Date(params.endDate);
 
-        if (this.theme && this.theme === 'darkMode') {
+        if (this.selectedTheme && this.selectedTheme === 'darkMode') {
+            this.toggleTheme();
+        }
+    }
+
+    readIndexUrlParams() {
+        const urlSearchParams = new URLSearchParams(window.location.search);
+        const params = Object.fromEntries(urlSearchParams.entries());
+        if (params.theme) {
+            this.theme.value = params.theme;
+        }
+        if (params.theme && params.theme === 'darkMode') {
             this.toggleTheme();
         }
     }
