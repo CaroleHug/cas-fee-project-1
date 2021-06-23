@@ -37,8 +37,7 @@ export function getNotes(req, res) {
                     sortedNotes = [...notes].sort((s1, s2) => s2.priority - s1.priority).reverse();
                     break;
             }
-
-            res.json(sortedNotes);
+            res.json(req.query.showFinished === 'true' ? sortedNotes.filter((note) => note.finished === true) : sortedNotes);
         }
     });
     console.log('notesController - getNotes end');

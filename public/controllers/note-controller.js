@@ -11,10 +11,12 @@ export class NoteController {
             [...this.orderCriterias].find((item) => item.value === 'importance').checked = true;
             this.theme = document.getElementById('theme');
             this.createNewNote = document.getElementById('create-new-note');
+            this.showFinished = document.getElementById('show-finished');
 
             this.editButtons = document.getElementsByName('notes-details-edit');
             this.finishedCheckboxes = document.getElementsByName('notes-details-finished');
             this.notesDetails = document.getElementsByName('notes-details');
+            this.showFinishedChecked = false;
             this.readIndexUrlParams();
         }
 
@@ -43,9 +45,14 @@ export class NoteController {
                 this.toggleTheme();
             });
 
-            this.noteContainer.addEventListener('click', (event) => {
-                const noteId = Number(event.target.dataset.id);
+            this.showFinished.addEventListener('click', () => {
+                this.showFinishedChecked = this.showFinished.checked;
+                this.getNotes(this.selectedOrder, this.showFinishedChecked);
             });
+
+            // this.noteContainer.addEventListener('click', (event) => {
+            //     const noteId = Number(event.target.dataset.id);
+            // });
 
             this.orderCriterias.forEach((radio) => {
                 radio.addEventListener('click', () => {
@@ -107,11 +114,11 @@ export class NoteController {
         }
     }
 
-    getNotes(order) {
+    getNotes(order, showFinished = false) {
         const self = this;
         noteService.getNotes((notes) => {
             self.renderNoteView(notes);
-        }, order);
+        }, order, showFinished);
     }
 
     toggleTheme() {
@@ -167,6 +174,8 @@ export class NoteController {
         if (params.theme && params.theme === 'darkMode') {
             this.toggleTheme();
         }
+
+        this.showFinishedChecked = params.showFinished ?? false;
     }
 
     isChecked (isChecked) {

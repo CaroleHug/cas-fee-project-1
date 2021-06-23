@@ -19,7 +19,7 @@ export class NoteService {
         xhr.send(JSON.stringify(note.toJSON()));
     }
 
-    getNotes(_callback, order) {
+    getNotes(_callback, order, showFinished ) {
         const xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function () {
             if (4 === xhr.readyState) {
@@ -34,7 +34,7 @@ export class NoteService {
         };
 
         xhr.responseType = 'json';
-        xhr.open('GET', `notes?order=${order}`);
+        xhr.open('GET', `notes?order=${order}&showFinished=${showFinished}`);
         xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
         xhr.send();
     }
