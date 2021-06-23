@@ -46,25 +46,8 @@ input[type=submit] {
     float: right;
 }
 
-.row svg {
-    height: 36px;
-    width: auto;
-    display: inline;
-    color: grey;
-}
-
-.row svg path {
-    fill: currentColor;
-}
-
-.row svg:hover {
-    color: red;
-    cursor: pointer;
-}
-
 /* HIDE RADIO */
 [type=radio] {
-    /*position: absolute;*/
     opacity: 0;
     width: 0;
     height: 0;
@@ -73,4 +56,8 @@ input[type=submit] {
 [type=radio] + img {
     cursor: pointer;
     height: 3rem;
+}
+
+.priority {
+    justify-content: flex-start;
 }
