@@ -17,11 +17,11 @@
         </header>
         <div>
         {{#each notes}}
-            <div class="notes-details">
+            <div class="notes-details" name="notes-details">
                     <div class="notes-details-end-date">{{this.endDate}}</div>
                     <div class="notes-details-title">{{this.title}}</div>
                 <div class="notes-details-finished">
-                   <input type="checkbox" {{#if this.isChecked}}checked{{/if}}>Finished</input>
+                   <input type="checkbox" id="notes-details-finished-{{this._id}}">Finished</input>
                     {{this.finished}}
                 </div>
                     <div class="notes-details-description">{{this.description}}</div>

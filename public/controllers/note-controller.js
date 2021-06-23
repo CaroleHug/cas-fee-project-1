@@ -13,6 +13,7 @@ export class NoteController {
             this.createNewNote = document.getElementById('create-new-note');
 
             this.editButtons = document.getElementsByName('notes-details-edit');
+            this.notesDetails = document.getElementsByName('notes-details');
             this.readIndexUrlParams();
         }
 
@@ -26,12 +27,12 @@ export class NoteController {
     }
 
     showNotes(newNotes) {
-        this.notes = newNotes;
         this.noteContainer.innerHTML = this.noteTemplateCompiled(
             {notes: newNotes},
             {allowProtoPropertiesByDefault: true},
         );
         this.addEditButtonsEventListeners();
+        this.checkFinishedCheckboxes(newNotes);
     }
 
     initEventHandlers() {
@@ -60,7 +61,6 @@ export class NoteController {
                 this.setCurrentFormValues();
                 if (this.newNote.reportValidity()) {
                     noteService.submitNote(new Note(this.id, this.newTitle, this.newDescription, this.newPriority, false, this.newEndDate)); //TODO remove hardcoded elements
-                    // window.location.href = 'http://localhost:3000/index.html?theme=';
                     window.location.href = `http://localhost:3000/index.html?theme=${this.selectedTheme}`;
                 }
                 event.preventDefault();
@@ -102,6 +102,15 @@ export class NoteController {
 
     toggleTheme() {
         document.body.classList.toggle('dark-theme');
+    }
+
+    checkFinishedCheckboxes(newNotes) {
+        newNotes.forEach((newNote) => {
+            if (newNote.finished) {
+                console.log(newNote);
+                document.getElementById(`notes-details-finished-${newNote._id}`).checked = true;
+            }
+        });
     }
 
     setCurrentFormValues() {
