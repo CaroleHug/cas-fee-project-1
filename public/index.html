@@ -21,8 +21,7 @@
                     <div class="notes-details-end-date">{{this.endDate}}</div>
                     <div class="notes-details-title">{{this.title}}</div>
                 <div class="notes-details-finished">
-                   <input type="checkbox" id="notes-details-finished-{{this._id}}">Finished</input>
-                    {{this.finished}}
+                   <input type="checkbox" name="notes-details-finished" id="notes-details-finished-{{this._id}}" value={{this._id}}>Finished</input>
                 </div>
                     <div class="notes-details-description">{{this.description}}</div>
                 <div class="notes-details-edit"><button name="notes-details-edit" id="notes-details-edit-{{this._id}}" value={{this._id}}>Edit</button></div>

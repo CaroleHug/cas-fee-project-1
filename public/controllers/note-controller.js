@@ -13,6 +13,7 @@ export class NoteController {
             this.createNewNote = document.getElementById('create-new-note');
 
             this.editButtons = document.getElementsByName('notes-details-edit');
+            this.finishedCheckboxes = document.getElementsByName('notes-details-finished');
             this.notesDetails = document.getElementsByName('notes-details');
             this.readIndexUrlParams();
         }
@@ -27,6 +28,7 @@ export class NoteController {
     }
 
     showNotes(newNotes) {
+        this.notes = newNotes;
         this.noteContainer.innerHTML = this.noteTemplateCompiled(
             {notes: newNotes},
             {allowProtoPropertiesByDefault: true},
@@ -47,7 +49,8 @@ export class NoteController {
 
             this.orderCriterias.forEach((radio) => {
                 radio.addEventListener('click', () => {
-                    this.getNotes(radio.value);
+                    this.selectedOrder = radio.value;
+                    this.getNotes(this.selectedOrder);
                 });
             });
 
@@ -60,14 +63,13 @@ export class NoteController {
             this.newNoteSubmit.addEventListener('click', (event) => {
                 this.setCurrentFormValues();
                 if (this.newNote.reportValidity()) {
-                    noteService.submitNote(new Note(this.id, this.newTitle, this.newDescription, this.newPriority, false, this.newEndDate)); //TODO remove hardcoded elements
+                    noteService.submitNote(new Note(this.id, this.newTitle, this.newDescription, this.newPriority, this.selectedFinished || false, this.newEndDate)); //TODO remove hardcoded elements
                     window.location.href = `http://localhost:3000/index.html?theme=${this.selectedTheme}`;
                 }
                 event.preventDefault();
             });
 
             this.cancel.addEventListener('click', () => {
-                console.log('cancel');
                 window.location.href = `http://localhost:3000/index.html?theme=${this.selectedTheme}`;
             });
         }
@@ -77,7 +79,19 @@ export class NoteController {
         this.editButtons.forEach((button) => {
             button.addEventListener('click', () => {
                 const selectedNote = this.notes.find((note) => note._id === button.value);
-                window.location.href = `http://localhost:3000/create.html?theme=${this.theme.value}&id=${button.value}&title=${selectedNote.title}&description=${selectedNote.description}&priority=${selectedNote.priority}&endDate=${selectedNote.endDate}`;
+                window.location.href = `http://localhost:3000/create.html?theme=${this.theme.value}&id=${button.value}&title=${selectedNote.title}&description=${selectedNote.description}&finished=${selectedNote.finished}&priority=${selectedNote.priority}&endDate=${selectedNote.endDate}`;
+            });
+        });
+
+
+        this.finishedCheckboxes.forEach((checkbox) => {
+            checkbox.addEventListener('click', () => {
+                console.log(this.notes);
+                const checkedNote = this.notes.find((note) => note._id === checkbox.value);
+                console.log(checkbox.checked);
+                const checkedNoteFinished = checkbox.checked;
+                noteService.submitNote(new Note(checkedNote._id, checkedNote.title, checkedNote.description, checkedNote.priority, checkedNoteFinished, checkedNote.endDate));
+                this.getNotes(this.selectedOrder);
             });
         });
     }
@@ -107,7 +121,6 @@ export class NoteController {
     checkFinishedCheckboxes(newNotes) {
         newNotes.forEach((newNote) => {
             if (newNote.finished) {
-                console.log(newNote);
                 document.getElementById(`notes-details-finished-${newNote._id}`).checked = true;
             }
         });
@@ -142,6 +155,7 @@ export class NoteController {
         if (this.selectedTheme && this.selectedTheme === 'darkMode') {
             this.toggleTheme();
         }
+        this.selectedFinished = params.finished;
     }
 
     readIndexUrlParams() {
