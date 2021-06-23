@@ -57,7 +57,7 @@ export class NoteController {
             this.orderCriterias.forEach((radio) => {
                 radio.addEventListener('click', () => {
                     this.selectedOrder = radio.value;
-                    this.getNotes(this.selectedOrder);
+                    this.getNotes(this.selectedOrder, this.showFinishedChecked);
                 });
             });
 
@@ -98,7 +98,7 @@ export class NoteController {
                 console.log(checkbox.checked);
                 const checkedNoteFinished = checkbox.checked;
                 noteService.submitNote(new Note(checkedNote._id, checkedNote.title, checkedNote.description, checkedNote.priority, checkedNoteFinished, checkedNote.endDate));
-                this.getNotes(this.selectedOrder);
+                this.getNotes(this.selectedOrder, this.showFinishedChecked);
             });
         });
     }
