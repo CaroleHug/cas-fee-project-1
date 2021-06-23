@@ -19,6 +19,7 @@ export class NoteController {
         if (this.isCreatePage()) {
             this.newNote = document.getElementById('newNote');
             this.newNoteSubmit = document.getElementById('new-note-submit');
+            this.cancel = document.getElementById('cancel');
             this.setCurrentFormValues();
             this.readUrlParams();
         }
@@ -63,6 +64,11 @@ export class NoteController {
                     window.location.href = `http://localhost:3000/index.html?theme=${this.selectedTheme}`;
                 }
                 event.preventDefault();
+            });
+
+            this.cancel.addEventListener('click', () => {
+                console.log('cancel');
+                window.location.href = `http://localhost:3000/index.html?theme=${this.selectedTheme}`;
             });
         }
     }
