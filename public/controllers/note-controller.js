@@ -41,6 +41,7 @@ export class NoteController {
         );
         this.addEditButtonsEventListeners();
         this.checkFinishedCheckboxes(newNotes);
+        this.addPriorities(newNotes);
     }
 
     initEventHandlers() {
@@ -157,6 +158,17 @@ export class NoteController {
         });
     }
 
+    addPriorities(newNotes) {
+        newNotes.forEach((newNote) => {
+            if (newNote.priority) {
+                const priorityIcons = document.getElementsByName(`priority-${newNote._id}`);
+                for (let i = 0; i < newNote.priority; i++) {
+                    priorityIcons[i].setAttribute('src', './data/flash-yellow.svg');
+                }
+            }
+        });
+    }
+
     setCurrentFormValues() {
         this.newTitle = document.getElementById('title').value;
         this.newDescription = document.getElementById('description').value;
@@ -179,12 +191,6 @@ export class NoteController {
         this.priority = params.priority;
         document.getElementById('title').value = params.title ?? null;
         document.getElementById('description').value = params.description ?? null;
-
-
-        // console.log
-        // if (params.priority) {
-        //     [...document.getElementsByName('priority')].find((item) => item.value === params.priority).checked = true;
-        // }
         document.getElementById('endDate').valueAsDate = new Date(params.endDate);
 
         if (this.selectedTheme && this.selectedTheme === 'darkMode') {
