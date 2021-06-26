@@ -6,7 +6,6 @@
     <link rel="shortcut icon" href="#">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js"
             integrity="sha256-/PJBs6QWvXijOFIX04kZpLb6ZtSQckdOIavLWKKOgXU=" crossorigin="anonymous" defer></script>
-    <script src="scripts/index.js" type="module"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&family=Shadows+Into+Light&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/index.css">
     <script src="controllers/index-controller.js" type="module" defer></script>
@@ -21,19 +20,19 @@
                     <div class="notes-details-end-date">{{this.endDate}}</div>
                     <div class="notes-details-title">{{this.title}}</div>
                     <div class="notes-details-priority">
-                        <img name="priority-{{this._id}}">
-                        <img name="priority-{{this._id}}">
-                        <img name="priority-{{this._id}}">
-                        <img name="priority-{{this._id}}">
-                        <img name="priority-{{this._id}}">
+                        <img name="priority-{{this.id}}">
+                        <img name="priority-{{this.id}}">
+                        <img name="priority-{{this.id}}">
+                        <img name="priority-{{this.id}}">
+                        <img name="priority-{{this.id}}">
                     </div>
                 <div class="notes-details-finished">
-                   <input type="checkbox" name="notes-details-finished" id="notes-details-finished-{{this._id}}" value={{this._id}}>Finished</input>
+                   <input type="checkbox" name="notes-details-finished" id="notes-details-finished-{{this.id}}" value={{this.id}}>Finished</input>
                 </div>
-                    <div class="notes-details-description" name="notes-details-description" id="notes-details-description-{{this._id}}">
+                    <div class="notes-details-description" name="notes-details-description" id="notes-details-description-{{this.id}}">
                         <p class="notes-details-description-text">{{this.description}}</p>
-                    <button class="notes-details-description-button" name="notes-details-unfold-button" id="notes-details-unfold-button-{{this._id}}"><img src="data/unfold-button.png"></button></div>
-                <div class="notes-details-edit"><button name="notes-details-edit" id="notes-details-edit-{{this._id}}" value={{this._id}}>Edit</button></div>
+                    <button class="notes-details-description-button" name="notes-details-unfold-button" id="notes-details-unfold-button-{{this.id}}"><img src="data/unfold-button.png"></button></div>
+                <div class="notes-details-edit"><button name="notes-details-edit" id="notes-details-edit-{{this.id}}" value={{this.id}}>Edit</button></div>
             </div>
         {{/each}}
         </div>

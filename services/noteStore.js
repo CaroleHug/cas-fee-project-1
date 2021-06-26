@@ -18,11 +18,8 @@ class NoteStore {
         console.log('noteStore - add new Note start');
         const creationDate = new Date().valueOf();
         const note = new Note(title, description, priority, finished, endDate, creationDate);
-        db.insert(note, (err, newDoc) => {
+        db.insert(note, () => {
             console.log('noteStore - insert new note');
-            // if (callback) {
-            //     callback(err, newDoc);
-            // }
         });
 
         console.log('noteStore - currentNotes');
@@ -40,20 +37,23 @@ class NoteStore {
     }
 
     update(id, title, description, priority = 2, finished = false, endDate, callback) {
-        db.update({_id: id}, {$set: {title, description, priority, finished, endDate}}, {returnUpdatedDocs: true}, (err, numDocs, doc) => {
-            callback(err, doc);
-        });
-    }
-
-    get(id, callback) {
-        db.findOne({_id: id}, (err, doc) => {
+        db.update({_id: id}, {$set: {title, description, priority, finished, endDate}},
+            {returnUpdatedDocs: true}, (err, numDocs, doc) => {
             callback(err, doc);
         });
     }
 
     all(callback) {
         db.find({}, (err, docs) => {
-            callback(err, docs);
+            const documents = docs.map((doc) => ({ title: doc.title,
+                description: doc.description,
+                priority: doc.priority,
+                endDate: doc.endDate,
+                creationDate: doc.creationDate,
+                finished: doc.finished,
+                // eslint-disable-next-line no-underscore-dangle
+                id: doc._id }));
+            callback(err, documents);
         });
     }
 }

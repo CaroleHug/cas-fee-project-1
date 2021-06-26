@@ -1,6 +1,10 @@
 import {noteService} from '../services/note-service.js';
 import {Note} from '../services/note.js';
 
+function toggleTheme() {
+    document.body.classList.toggle('dark-theme');
+}
+
 export class IndexController {
     constructor() {
             this.noteTemplateCompiled = Handlebars.compile(document.getElementById('note-list-template').innerHTML);
@@ -26,8 +30,9 @@ export class IndexController {
             {allowProtoPropertiesByDefault: true},
         );
         this.addEditButtonsEventListeners();
-        this.checkFinishedCheckboxes(newNotes);
-        this.addPriorities(newNotes);
+        this.newNotes = newNotes;
+        this.checkFinishedCheckboxes();
+        this.addPriorities();
         this.addUnfoldButton();
     }
 
@@ -46,7 +51,7 @@ export class IndexController {
 
     initEventHandlers() {
         this.theme.addEventListener('change', () => {
-            this.toggleTheme();
+            toggleTheme();
         });
 
         this.showFinished.addEventListener('click', () => {
@@ -69,17 +74,16 @@ export class IndexController {
     addEditButtonsEventListeners() {
         this.editButtons.forEach((button) => {
             button.addEventListener('click', () => {
-                const selectedNote = this.notes.find((note) => note._id === button.value);
+                const selectedNote = this.notes.find((note) => note.id === button.value);
                 window.location.href = `http://localhost:3000/create.html?theme=${this.theme.value}&id=${button.value}&title=${selectedNote.title}&description=${selectedNote.description}&finished=${selectedNote.finished}&priority=${selectedNote.priority}&endDate=${selectedNote.endDate}`;
             });
         });
 
-
         this.finishedCheckboxes.forEach((checkbox) => {
             checkbox.addEventListener('click', () => {
-                const checkedNote = this.notes.find((note) => note._id === checkbox.value);
+                const checkedNote = this.notes.find((note) => note.id === checkbox.value);
                 const checkedNoteFinished = checkbox.checked;
-                noteService.submitNote(new Note(checkedNote._id,
+                noteService.submitNote(new Note(checkedNote.id,
                     checkedNote.title, checkedNote.description, checkedNote.priority,
                     checkedNoteFinished, checkedNote.endDate));
                 this.getNotes(this.selectedOrder, this.showFinishedChecked);
@@ -103,22 +107,18 @@ export class IndexController {
         }, order, showFinished);
     }
 
-    toggleTheme() {
-        document.body.classList.toggle('dark-theme');
-    }
-
-    checkFinishedCheckboxes(newNotes) {
-        newNotes.forEach((newNote) => {
+    checkFinishedCheckboxes() {
+        this.newNotes.forEach((newNote) => {
             if (newNote.finished) {
-                document.getElementById(`notes-details-finished-${newNote._id}`).checked = true;
+                document.getElementById(`notes-details-finished-${newNote.id}`).checked = true;
             }
         });
     }
 
-    addPriorities(newNotes) {
-        newNotes.forEach((newNote) => {
+    addPriorities() {
+        this.newNotes.forEach((newNote) => {
             if (newNote.priority) {
-                const priorityIcons = document.getElementsByName(`priority-${newNote._id}`);
+                const priorityIcons = document.getElementsByName(`priority-${newNote.id}`);
                 for (let i = 0; i < newNote.priority; i++) {
                     priorityIcons[i].setAttribute('src', './data/flash-yellow.svg');
                 }
@@ -133,7 +133,7 @@ export class IndexController {
             this.theme.value = params.theme;
         }
         if (params.theme && params.theme === 'darkMode') {
-            this.toggleTheme();
+            toggleTheme();
         }
 
         this.showFinishedChecked = params.showFinished ?? false;

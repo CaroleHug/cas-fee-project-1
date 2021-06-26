@@ -7,9 +7,7 @@ export class NoteService {
         const xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function () {
             if (4 === xhr.readyState) {
-                if (xhr.status === 200) {
-                    console.log(xhr.responseText);
-                } else {
+                if (!xhr.status === 200) {
                     console.log('There was a problem with the request.');
                 }
             }
@@ -19,10 +17,10 @@ export class NoteService {
         xhr.send(JSON.stringify(note.toJSON()));
     }
 
-    getNotes(_callback, order, showFinished ) {
+    getNotes(_callback, order, showFinished) {
         const xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function () {
-            if (4 === xhr.readyState) {
+            if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
                     this.notes = xhr.response;
                     _callback(this.notes);
