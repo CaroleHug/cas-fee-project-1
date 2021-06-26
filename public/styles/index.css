@@ -80,7 +80,7 @@ h1 {
     display: flex;
 }
 
-.left-right {
+.menu-container {
     display: flex;
     justify-content: space-between;
     margin-bottom: 24px;
