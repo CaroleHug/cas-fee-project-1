@@ -47,7 +47,7 @@ button {
 
 .dark-theme ::selection {
     color: white;
-    background: #6532a8;
+    background: #8532a8;
 }
 
 h1 {
@@ -56,7 +56,7 @@ h1 {
 }
 
 .dark-theme h1 {
-    color: #6532a8;
+    color: #8532a8;
 }
 
 select {
@@ -95,6 +95,7 @@ body {
     display: grid;
     grid-template-rows: 1fr 1fr 1fr 1fr;
     grid-template-columns: 1fr 5fr 1fr 1fr;
+    margin: 15px 10px 50px;
     column-gap: 2.5em;
     font-family: 'Shadows Into Light', cursive;
     font-weight: normal;
@@ -131,8 +132,8 @@ body {
     grid-column: 2 / span 2;
     grid-row: 2;
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 0.5fr 1fr;
     border-style: solid;
     border-width: 1px;
     height: 3.2em;
@@ -142,6 +143,15 @@ body {
 .notes-details-description-text {
     grid-column: 1 / span 2;
     grid-row: 1 / span 2;
+    /*overflow: hidden;*/
+    /*display: -webkit-box;*/
+    /*-webkit-line-clamp: 2;  !*max 2 lines *!*/
+    /*-webkit-box-orient: vertical;*/
+}
+
+p {
+    margin-block-start: 0;
+    margin-block-end: 0;
 }
 
 .notes-details-description-button {
@@ -164,7 +174,7 @@ body {
     background: transparent;
 }
 
-.notes-details-description-button-shown-unfolded {
+.notes-details-description-button-shown-unfolded > img {
     transform: rotate(180deg);
 }
 
