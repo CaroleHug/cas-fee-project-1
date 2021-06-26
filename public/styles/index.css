@@ -98,6 +98,7 @@ body {
     column-gap: 2.5em;
     font-family: 'Shadows Into Light', cursive;
     font-weight: normal;
+    white-space: pre-line;
 }
 
 .notes-details-finished {
@@ -129,8 +130,32 @@ body {
 .notes-details-description {
     grid-column: 2 / span 2;
     grid-row: 2;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     border-style: solid;
     border-width: 1px;
+    height: 3.2em;
+    overflow: hidden;
+}
+
+.notes-details-description-text {
+    grid-column: 1 / span 2;
+    grid-row: 1 / span 2;
+}
+
+.notes-details-description-button {
+    grid-column: 3;
+    grid-row: 1;
+    display: none;
+}
+
+.notes-details-description-button-shown {
+    display: flex;
+}
+
+.notes-details-description-unfolded {
+    height: auto;
 }
 
 .notes-details-edit {

@@ -16,6 +16,7 @@ export class NoteController {
             this.editButtons = document.getElementsByName('notes-details-edit');
             this.finishedCheckboxes = document.getElementsByName('notes-details-finished');
             this.notesDetails = document.getElementsByName('notes-details');
+            this.notesDescriptions = document.getElementsByName('notes-details-description');
             this.showFinishedChecked = false;
             this.readIndexUrlParams();
         }
@@ -42,6 +43,19 @@ export class NoteController {
         this.addEditButtonsEventListeners();
         this.checkFinishedCheckboxes(newNotes);
         this.addPriorities(newNotes);
+        this.addUnfoldButton(newNotes);
+    }
+
+    addUnfoldButton(newNotes) {
+        this.notesDescriptions.forEach((description) => {
+            if(description.offsetHeight < description.scrollHeight) {
+                const unfoldButton = description.lastChild;
+                unfoldButton.classList.toggle('notes-details-description-button-shown');
+                unfoldButton.addEventListener('click', () => {
+                    description.classList.toggle('notes-details-description-unfolded');
+                });
+            }
+        });
     }
 
     initEventHandlers() {
@@ -61,6 +75,12 @@ export class NoteController {
                     this.getNotes(this.selectedOrder, this.showFinishedChecked);
                 });
             });
+
+            // this.notesDescriptions.forEach((description) => {
+            //     description.addEventListener('overflow', () => {
+            //         console.log(description);
+            //     });
+            // });
 
             this.createNewNote.addEventListener('click', () => {
                 window.location.href = `http://localhost:3000/create.html?theme=${this.theme.value}`;
