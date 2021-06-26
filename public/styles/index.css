@@ -152,6 +152,25 @@ body {
 
 .notes-details-description-button-shown {
     display: flex;
+    max-height: 1rem;
+    background: transparent;
+}
+
+.dark-theme .notes-details-description-button-shown {
+    background: transparent;
+}
+
+.dark-theme .notes-details-description-button-shown:hover {
+    background: transparent;
+}
+
+.notes-details-description-button-shown-unfolded {
+    transform: rotate(180deg);
+}
+
+.notes-details-description-button-shown > img {
+    max-height: 2rem;
+    max-width: 2.5rem;
 }
 
 .notes-details-description-unfolded {

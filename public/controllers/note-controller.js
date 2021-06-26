@@ -53,6 +53,7 @@ export class NoteController {
                 unfoldButton.classList.toggle('notes-details-description-button-shown');
                 unfoldButton.addEventListener('click', () => {
                     description.classList.toggle('notes-details-description-unfolded');
+                    unfoldButton.classList.toggle('notes-details-description-button-shown-unfolded');
                 });
             }
         });
