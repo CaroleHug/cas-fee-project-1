@@ -3,13 +3,13 @@ body {
     height: 100%;
 }
 
-.form-rows {
-    margin-right: 2rem;
-}
-
 .row {
     margin-top: 6px;
     display: flex;
+}
+
+.form-rows {
+    margin-right: 2rem;
 }
 
 .row > label {
@@ -24,7 +24,6 @@ body {
 }
 
 input[type=date] {
-    /*float: left;*/
     width: 10rem;
 }
 
@@ -32,17 +31,14 @@ input[type=date] {
     width: 100%;
     margin-top: 6px;
     margin-bottom: 6px;
-    /*font-family: 'Roboto', sans-serif;*/
 }
 
 .button-cancel {
     float: right;
-    /*font-family: 'Roboto', sans-serif;*/
 }
 
 /* HIDE RADIO */
 [type=radio] {
-    opacity: 0;
     width: 0;
     height: 0;
 }

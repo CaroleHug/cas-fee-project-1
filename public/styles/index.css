@@ -3,15 +3,22 @@
     color: #1c1b1b;
 }
 
+:root .dark-theme {
+    background: #1c1b1b;
+    color: #f0eded;
+}
+
 html,
 body {
     margin: 0;
     min-height: 100%;
 }
 
-:root .dark-theme {
-    background: #1c1b1b;
-    color: #f0eded;
+body {
+    padding: 2rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: large;
 }
 
 * {
@@ -27,13 +34,17 @@ body {
 }
 
 button {
+    cursor: pointer;
+}
+
+button,
+select {
+    font-family: 'Roboto', sans-serif;
     border: none;
+    background-color: lightgrey;
+    display: inline-block;
     padding: 15px 32px;
     text-align: center;
-    display: inline-block;
-    background-color: lightgrey;
-    cursor: pointer;
-    font-family: 'Roboto', sans-serif;
 }
 
 .dark-theme button {
@@ -59,25 +70,9 @@ h1 {
     color: #8532a8;
 }
 
-select {
-    border: none;
-    background-color: lightgrey;
-    padding: 15px 32px;
-    text-align: center;
-    display: inline-block;
-    font-family: 'Roboto', sans-serif;
-}
-
 .dark-theme select {
     background-color: #8532a8;
     color: white;
-}
-
-body {
-    padding: 2rem;
-    font-family: 'Roboto', sans-serif;
-    font-weight: bold;
-    font-size: large;
 }
 
 .grid-container {
@@ -139,16 +134,11 @@ body {
     border-width: 1px;
     height: 3.2em;
     overflow: hidden;
-    /*min-width: 200px;*/
 }
 
 .notes-details-description-text {
     grid-column: 1 / span 2;
     grid-row: 1 / span 2;
-    /*overflow: hidden;*/
-    /*display: -webkit-box;*/
-    /*-webkit-line-clamp: 2;  !*max 2 lines *!*/
-    /*-webkit-box-orient: vertical;*/
 }
 
 p {
@@ -201,5 +191,3 @@ p {
     content: " *";
     color: red;
 }
-
-
