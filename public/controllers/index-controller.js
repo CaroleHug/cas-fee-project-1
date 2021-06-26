@@ -1,10 +1,6 @@
 import {noteService} from '../services/note-service.js';
 import {Note} from '../services/note.js';
 
-function toggleTheme() {
-    document.body.classList.toggle('dark-theme');
-}
-
 export class IndexController {
     constructor() {
             this.noteTemplateCompiled = Handlebars.compile(document.getElementById('note-list-template').innerHTML);
@@ -51,7 +47,7 @@ export class IndexController {
 
     initEventHandlers() {
         this.theme.addEventListener('change', () => {
-            toggleTheme();
+            this.toggleTheme();
         });
 
         this.showFinished.addEventListener('click', () => {
@@ -133,10 +129,14 @@ export class IndexController {
             this.theme.value = params.theme;
         }
         if (params.theme && params.theme === 'darkMode') {
-            toggleTheme();
+            this.toggleTheme();
         }
 
         this.showFinishedChecked = params.showFinished ?? false;
+    }
+
+    toggleTheme() {
+        document.body.classList.toggle('dark-theme');
     }
 }
 
