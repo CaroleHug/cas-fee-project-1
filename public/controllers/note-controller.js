@@ -29,6 +29,7 @@ export class NoteController {
             this.setCurrentFormValues();
             this.readUrlParams();
             this.addPriorityRadioEventListeners();
+            this.setCurrentPriority();
         }
     }
 
@@ -116,6 +117,16 @@ export class NoteController {
         });
     }
 
+    setCurrentPriority() {
+        if (this.priority && this.priority > 0) {
+            let i = 0;
+            while (i < this.priority) {
+                this.priorityRadios[i].setAttribute('src', './data/flash-yellow.svg');
+                i++;
+            }
+        }
+    }
+
     renderNoteView(notes) {
         this.showNotes(notes);
     }
@@ -165,11 +176,15 @@ export class NoteController {
         const params = Object.fromEntries(urlSearchParams.entries());
         this.selectedTheme = params.theme;
         this.id = params.id;
+        this.priority = params.priority;
         document.getElementById('title').value = params.title ?? null;
         document.getElementById('description').value = params.description ?? null;
-        if (params.priority) {
-            [...document.getElementsByName('priority')].find((item) => item.value === params.priority).checked = true;
-        }
+
+
+        // console.log
+        // if (params.priority) {
+        //     [...document.getElementsByName('priority')].find((item) => item.value === params.priority).checked = true;
+        // }
         document.getElementById('endDate').valueAsDate = new Date(params.endDate);
 
         if (this.selectedTheme && this.selectedTheme === 'darkMode') {

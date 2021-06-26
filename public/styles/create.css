@@ -57,7 +57,3 @@ input[type=submit] {
     cursor: pointer;
     height: 3rem;
 }
-
-.priority {
-    justify-content: flex-start;
-}
