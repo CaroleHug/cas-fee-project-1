@@ -33,6 +33,7 @@ button {
     display: inline-block;
     background-color: lightgrey;
     cursor: pointer;
+    font-family: 'Roboto', sans-serif;
 }
 
 .dark-theme button {
