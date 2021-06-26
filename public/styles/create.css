@@ -27,12 +27,12 @@ textarea {
 
 input[type=text] {
     float: left;
-    width: 40rem;
+    width: 100%;
 }
 
 textarea[type=text] {
     float: left;
-    width: 40rem;
+    width: 100%;
 }
 
 input[type=date] {

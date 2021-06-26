@@ -93,13 +93,14 @@ body {
 
 .notes-details {
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto  auto  auto auto;
     grid-template-columns: 1fr 5fr 1fr 1fr;
     margin: 15px 10px 50px;
     column-gap: 2.5em;
     font-family: 'Shadows Into Light', cursive;
     font-weight: normal;
     white-space: pre-line;
+    min-width: 790px;
 }
 
 .notes-details-finished {
@@ -138,6 +139,7 @@ body {
     border-width: 1px;
     height: 3.2em;
     overflow: hidden;
+    /*min-width: 200px;*/
 }
 
 .notes-details-description-text {
@@ -162,6 +164,7 @@ p {
 
 .notes-details-description-button-shown {
     display: flex;
+    justify-content: flex-end;
     max-height: 1rem;
     background: transparent;
 }
