@@ -37,6 +37,7 @@ button {
 
 .dark-theme button {
     background-color: #8532a8;
+    color: white;
 }
 
 .dark-theme button:hover {
@@ -67,6 +68,7 @@ select {
 
 .dark-theme select {
     background-color: #8532a8;
+    color: white;
 }
 
 body {
