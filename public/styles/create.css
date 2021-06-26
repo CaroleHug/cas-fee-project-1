@@ -17,26 +17,14 @@ body {
     min-width: 10rem;
 }
 
-input {
+.formField {
     font-family: 'Shadows Into Light', cursive;
-}
-
-textarea {
-    font-family: 'Shadows Into Light', cursive;
-}
-
-input[type=text] {
-    float: left;
     width: 100%;
-}
-
-textarea[type=text] {
     float: left;
-    width: 100%;
 }
 
 input[type=date] {
-    float: left;
+    /*float: left;*/
     width: 10rem;
 }
 
@@ -44,12 +32,12 @@ input[type=date] {
     width: 100%;
     margin-top: 6px;
     margin-bottom: 6px;
-    font-family: 'Roboto', sans-serif;
+    /*font-family: 'Roboto', sans-serif;*/
 }
 
 .button-cancel {
     float: right;
-    font-family: 'Roboto', sans-serif;
+    /*font-family: 'Roboto', sans-serif;*/
 }
 
 /* HIDE RADIO */

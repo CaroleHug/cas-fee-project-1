@@ -13,18 +13,21 @@
 </head>
 <body>
 <!--TODO: Refactor namings!!-->
+<header>
+    <h1 id="createOrEditTitle"></h1>
+</header>
 <form id="newNote">
     <div class="form-rows">
         <div class="row">
-            <label for="title" class="formLabel mandatory-field">Titel</label>
+            <label for="title" class="formLabel mandatory-field">Title</label>
             <input type="text" id="title" name="title" class="formField" value="title" required>
         </div>
         <div class="row">
-            <label for="description" class="formLabel mandatory-field">Beschreibung</label>
+            <label for="description" class="formLabel mandatory-field">Description</label>
             <textarea type="text" id="description" name="description" class="formField" required></textarea>
         </div>
         <div class="row priority">
-            <label class="formLabel">Wichtigkeit</label>
+            <label class="formLabel">Priority</label>
             <div>
             <label>
                 <input name="priority-radio" type="radio" value="1"><img name="priority" src="./data/flash-grey.svg"></input>
@@ -44,13 +47,13 @@
             </div>
         </div>
         <div class="row">
-            <label for="endDate" class="formLabel">Erledigen bis</label>
+            <label for="endDate" class="formLabel">Due Date</label>
             <input type="date" id="endDate" name="endDate" class="formField">
         </div>
     </div>
 </form>
-<button class="save-button" id="new-note-submit">Speichern</button>
-<button id="cancel" class="button-cancel">Abbrechen</button>
+<button class="save-button" id="new-note-submit">Save</button>
+<button id="cancel" class="button-cancel">Cancel</button>
 
 </body>
 </html>

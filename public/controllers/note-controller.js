@@ -207,6 +207,7 @@ export class NoteController {
     readUrlParams() {
         const urlSearchParams = new URLSearchParams(window.location.search);
         const params = Object.fromEntries(urlSearchParams.entries());
+        // window.history.replaceState({}, document.title, window.location.pathname);
         this.selectedTheme = params.theme;
         this.id = params.id;
         this.priority = params.priority;
@@ -217,12 +218,16 @@ export class NoteController {
         if (this.selectedTheme && this.selectedTheme === 'darkMode') {
             this.toggleTheme();
         }
+
+        this.createOrEditTitle = 'Edit note';
+        document.getElementById('createOrEditTitle').innerHTML = this.id ? 'Edit note' : 'Create new note';
         this.selectedFinished = params.finished;
     }
 
     readIndexUrlParams() {
         const urlSearchParams = new URLSearchParams(window.location.search);
         const params = Object.fromEntries(urlSearchParams.entries());
+        // window.history.replaceState({}, document.title, window.location.pathname);
         if (params.theme) {
             this.theme.value = params.theme;
         }
