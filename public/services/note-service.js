@@ -6,15 +6,15 @@ export class NoteService {
    submitNote(note) {
         const xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function () {
-            if (4 === xhr.readyState) {
-                if (!xhr.status === 200) {
+            if (xhr.readyState === 4) {
+                if (!(xhr.status === 200)) {
                     console.log('There was a problem with the request.');
                 }
             }
         };
         xhr.open('POST', 'notes');
         xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-        xhr.send(JSON.stringify(note.toJSON()));
+        xhr.send(JSON.stringify(note));
     }
 
     getNotes(_callback, order, showFinished) {

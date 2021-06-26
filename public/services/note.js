@@ -7,15 +7,4 @@ export class Note {
         this.finished = finished;
         this.endDate = endDate;
     }
-
-    toJSON() {
-        return {
-            id: this.id,
-            title: this.title,
-            description: this.description,
-            priority: this.priority,
-            finished: this.finished,
-            endDate: this.endDate,
-        };
-    }
 }
