@@ -14,7 +14,7 @@ class Note {
 }
 
 class NoteStore {
-    add(title, description, priority = 2, finished = false, endDate) {
+    add(title, description, priority = 0, finished = false, endDate) {
         const creationDate = new Date().valueOf();
         const note = new Note(title, description, priority, finished, endDate, creationDate);
         db.insert(note, () => {
@@ -27,7 +27,7 @@ class NoteStore {
         });
     }
 
-    update(id, title, description, priority = 2, finished = false, endDate, callback) {
+    update(id, title, description, priority = 0, finished = false, endDate, callback) {
         db.update({_id: id}, {$set: {title, description, priority, finished, endDate}},
             {returnUpdatedDocs: true}, (err, numDocs, doc) => {
             callback(err, doc);
