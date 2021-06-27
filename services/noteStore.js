@@ -15,19 +15,10 @@ class Note {
 
 class NoteStore {
     add(title, description, priority = 2, finished = false, endDate, callback) {
-        console.log('noteStore - add new Note start');
         const creationDate = new Date().valueOf();
         const note = new Note(title, description, priority, finished, endDate, creationDate);
         db.insert(note, () => {
-            console.log('noteStore - insert new note');
         });
-
-        console.log('noteStore - currentNotes');
-        const currentNotes = db.find({}, (err, docs) => {
-            callback(err, docs);
-        });
-        console.log(currentNotes);
-        console.log('noteStore - added new Note - end');
     }
 
     delete(id, callback) {

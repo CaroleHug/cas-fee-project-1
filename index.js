@@ -11,4 +11,5 @@ app.use(noteRoutes);
 app.use(express.static('./public'));
 
 const port = 3000;
+// eslint-disable-next-line no-console
 app.listen(port, () => { console.log(`Note-Server running at http://localhost:${port}/`); });
