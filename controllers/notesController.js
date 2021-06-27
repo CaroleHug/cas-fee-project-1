@@ -1,7 +1,7 @@
 import {noteStore} from '../services/noteStore.js';
 
 export function createNote(req, res) {
-    if(!req.body.id) {
+    if (!req.body.id) {
         console.log('notesController - createNote start');
         noteStore.add(req.body.title, req.body.description, req.body.priority, req.body.finished,
             req.body.endDate, () => {
@@ -10,7 +10,8 @@ export function createNote(req, res) {
         console.log('notesController - createNote end');
     } else {
         console.log('notesController - updateNote start');
-        noteStore.update(req.body.id, req.body.title, req.body.description, req.body.priority, req.body.finished,
+        noteStore.update(req.body.id, req.body.title, req.body.description,
+            req.body.priority, req.body.finished,
             req.body.endDate, () => {
                 res.json({message: 'SUCCESS'});
             });
@@ -23,19 +24,20 @@ export function getNotes(req, res) {
     console.log('notesController - getNotes start');
     noteStore.all((err, notes) => {
         if (notes) {
+            let newNotes = [];
             switch (req.query.order) {
                 case 'endDate':
-                    notes = [...notes].sort((s1, s2) => new Date(s2.endDate) - new Date(s1.endDate));
+                    newNotes = [...notes].sort((s1, s2) => new Date(s2.endDate) - new Date(s1.endDate));
                     break;
                 case 'creationDate':
-                    notes = [...notes].sort((s1, s2) => s2.creationDate - s1.creationDate);
+                    newNotes = [...notes].sort((s1, s2) => s2.creationDate - s1.creationDate);
                     break;
                 case 'importance':
                 default:
-                    notes = [...notes].sort((s1, s2) => s2.priority - s1.priority);
+                    newNotes = [...notes].sort((s1, s2) => s2.priority - s1.priority);
                     break;
             }
-            res.json(req.query.showFinished === 'true' ? notes.filter((note) => note.finished === true) : notes);
+            res.json(req.query.showFinished === 'true' ? notes.filter((note) => note.finished === true) : newNotes);
         }
     });
     console.log('notesController - getNotes end');

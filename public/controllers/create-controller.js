@@ -3,15 +3,9 @@ import {Note} from '../services/note.js';
 
 export class CreateController {
     constructor() {
-        this.newNote = document.getElementById('newNote');
-        this.newNoteSubmit = document.getElementById('new-note-submit');
-        this.cancel = document.getElementById('cancel');
-        this.priorityRadios = document.getElementsByName('priority');
-
-        this.setCurrentFormValues();
+        this.noteTemplateCompiled = Handlebars.compile(document.getElementById('note-template').innerHTML);
+        this.noteContainer = document.getElementById('note-container');
         this.readUrlParams();
-        this.addPriorityRadioEventListeners();
-        this.setCurrentPriority();
     }
 
     initEventHandlers() {
@@ -71,21 +65,44 @@ export class CreateController {
         const params = Object.fromEntries(urlSearchParams.entries());
         this.selectedTheme = params.theme;
         this.id = params.id;
-        this.priority = params.priority;
-        document.getElementById('title').value = params.title ?? null;
-        document.getElementById('description').value = params.description ?? null;
-        document.getElementById('endDate').valueAsDate = new Date(params.endDate);
-
         if (this.selectedTheme && this.selectedTheme === 'darkMode') {
             document.body.classList.toggle('dark-theme');
         }
+        this.getNote(this.id);
+    }
 
+    showNote(note) {
+        this.note = note;
+        this.noteContainer.innerHTML = this.noteTemplateCompiled(
+            {note},
+            {allowProtoPropertiesByDefault: true},
+        );
+        this.priority = note.priority;
+        this.selectedFinished = note.finished;
+        this.newNote = document.getElementById('newNote');
+        this.newNoteSubmit = document.getElementById('new-note-submit');
+        this.cancel = document.getElementById('cancel');
+        this.priorityRadios = document.getElementsByName('priority');
         document.getElementById('createOrEditTitle').innerHTML = this.id ? 'Edit note' : 'Create new note';
-        this.selectedFinished = params.finished;
+        this.setCurrentPriority();
+        this.addPriorityRadioEventListeners();
+        this.setCurrentFormValues();
+        this.initEventHandlers();
+    }
+
+    renderNoteView(note) {
+        this.showNote(note);
+    }
+
+    getNote(id) {
+        const self = this;
+        noteService.getNote((note) => {
+            self.renderNoteView(note);
+        }, id);
     }
 
     initialize() {
-        this.initEventHandlers();
+        /* Load */
     }
 }
 

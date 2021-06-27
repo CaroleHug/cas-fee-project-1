@@ -43,6 +43,24 @@ class NoteStore {
         });
     }
 
+    get(id, callback) {
+        db.findOne({_id: id}, (err, doc) => {
+            let note = {};
+            if (doc) {
+                note = { title: doc.title,
+                    description: doc.description,
+                    priority: doc.priority,
+                    endDate: doc.endDate,
+                    creationDate: doc.creationDate,
+                    finished: doc.finished,
+                    // eslint-disable-next-line no-underscore-dangle
+                    id: doc._id };
+            }
+
+            callback(err, note);
+        });
+    }
+
     all(callback) {
         db.find({}, (err, docs) => {
             const documents = docs.map((doc) => ({ title: doc.title,

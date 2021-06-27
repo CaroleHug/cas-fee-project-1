@@ -10,47 +10,58 @@
     <link rel="stylesheet" href="styles/index.css">
     <link rel="stylesheet" href="styles/create.css">
     <script src="controllers/create-controller.js" type="module" defer></script>
+
+    <script id="note-template" type="text/x-handlebars-template">
+        <header>
+            <h1 id="createOrEditTitle"></h1>
+        </header>
+        <div>
+            <form id="newNote">
+                <div class="form-rows">
+                    <div class="row">
+                        <label for="title" class="formLabel mandatory-field">Title</label>
+                        <input type="text" id="title" name="title" class="formField" value="{{note.title}}" required>
+                    </div>
+                    <div class="row">
+                        <label for="description" class="formLabel mandatory-field">Description</label>
+                        <textarea type="text" id="description" name="description" class="formField" required>{{note.description}}</textarea>
+                    </div>
+                    <div class="row priority">
+                        <label class="formLabel">Priority</label>
+                        <div>
+                            <label>
+                                <input name="priority-radio" type="radio" value="1"><img name="priority" src="./data/flash-grey.svg"></input>
+                            </label>
+                            <label>
+                                <input name="priority-radio" type="radio" value="2"><img name="priority"  src="./data/flash-grey.svg"></input>
+                            </label>
+                            <label>
+                                <input name="priority-radio" type="radio" value="3"><img name="priority"  src="./data/flash-grey.svg"></input>
+                            </label>
+                            <label>
+                                <input name="priority-radio" type="radio" value="4"><img name="priority"  src="./data/flash-grey.svg"></input>
+                            </label>
+                            <label>
+                                <input name="priority-radio" type="radio" value="5"><img name="priority"  src="./data/flash-grey.svg"></input>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label for="endDate" class="formLabel mandatory-field">Due Date</label>
+                        <input type="date" id="endDate" name="endDate" class="formField" value="{{note.endDate}}" required>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </script>
 </head>
 <body>
 <header>
     <h1 id="createOrEditTitle"></h1>
 </header>
-<form id="newNote">
-    <div class="form-rows">
-        <div class="row">
-            <label for="title" class="formLabel mandatory-field">Title</label>
-            <input type="text" id="title" name="title" class="formField" value="title" required>
-        </div>
-        <div class="row">
-            <label for="description" class="formLabel mandatory-field">Description</label>
-            <textarea type="text" id="description" name="description" class="formField" required></textarea>
-        </div>
-        <div class="row priority">
-            <label class="formLabel">Priority</label>
-            <div>
-            <label>
-                <input name="priority-radio" type="radio" value="1"><img name="priority" src="./data/flash-grey.svg"></input>
-            </label>
-            <label>
-                <input name="priority-radio" type="radio" value="2"><img name="priority"  src="./data/flash-grey.svg"></input>
-            </label>
-            <label>
-                <input name="priority-radio" type="radio" value="3"><img name="priority"  src="./data/flash-grey.svg"></input>
-            </label>
-            <label>
-                <input name="priority-radio" type="radio" value="4"><img name="priority"  src="./data/flash-grey.svg"></input>
-            </label>
-            <label>
-                <input name="priority-radio" type="radio" value="5"><img name="priority"  src="./data/flash-grey.svg"></input>
-            </label>
-            </div>
-        </div>
-        <div class="row">
-            <label for="endDate" class="formLabel">Due Date</label>
-            <input type="date" id="endDate" name="endDate" class="formField">
-        </div>
-    </div>
-</form>
+<div>
+    <section class="card" id="note-container"></section>
+</div>
 <button class="save-button" id="new-note-submit">Save</button>
 <button id="cancel" class="button-cancel">Cancel</button>
 </body>

@@ -36,6 +36,26 @@ export class NoteService {
         xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
         xhr.send();
     }
+
+    getNote(_callback, id) {
+        const xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    this.note = xhr.response;
+                    _callback(this.note);
+                } else {
+                    console.log('There was a problem with the request.');
+                    _callback();
+                }
+            }
+        };
+
+        xhr.responseType = 'json';
+        xhr.open('GET', `note/${id}`);
+        xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+        xhr.send();
+    }
 }
 
 export const noteService = new NoteService();

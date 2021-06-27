@@ -5,7 +5,7 @@ export class IndexController {
     constructor() {
             this.noteTemplateCompiled = Handlebars.compile(document.getElementById('note-list-template').innerHTML);
             this.noteContainer = document.getElementById('note-container');
-            this.noteContainer = document.getElementById('note-container');
+            // this.noteContainer = document.getElementById('note-container');
             this.orderCriterias = document.getElementsByName('order');
             [...this.orderCriterias].find((item) => item.value === 'importance').checked = true;
             this.theme = document.getElementById('theme');
@@ -70,8 +70,7 @@ export class IndexController {
     addEditButtonsEventListeners() {
         this.editButtons.forEach((button) => {
             button.addEventListener('click', () => {
-                const selectedNote = this.notes.find((note) => note.id === button.value);
-                window.location.href = `http://localhost:3000/create.html?theme=${this.theme.value}&id=${button.value}&title=${selectedNote.title}&description=${selectedNote.description}&finished=${selectedNote.finished}&priority=${selectedNote.priority}&endDate=${selectedNote.endDate}`;
+                window.location.href = `http://localhost:3000/create.html?theme=${this.theme.value}&id=${button.value}`;
             });
         });
 
