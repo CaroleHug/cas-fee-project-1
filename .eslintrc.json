@@ -19,7 +19,8 @@
     "object-curly-spacing": "off",
     "linebreak-style": "off",
     "import/prefer-default-export": "off",
-    "class-methods-use-this": "off"
-//    "max-classes-per-file": "[true, 2]"
+    "class-methods-use-this": "off",
+    "max-classes-per-file": ["error", 2],
+    "max-len": ["error", { "code": 120 }]
   }
 }

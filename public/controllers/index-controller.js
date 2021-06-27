@@ -3,9 +3,9 @@ import {Note} from '../services/note.js';
 
 export class IndexController {
     constructor() {
+            // eslint-disable-next-line no-undef
             this.noteTemplateCompiled = Handlebars.compile(document.getElementById('note-list-template').innerHTML);
             this.noteContainer = document.getElementById('note-container');
-            // this.noteContainer = document.getElementById('note-container');
             this.orderCriterias = document.getElementsByName('order');
             [...this.orderCriterias].find((item) => item.value === 'importance').checked = true;
             this.theme = document.getElementById('theme');

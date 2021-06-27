@@ -14,7 +14,7 @@ class Note {
 }
 
 class NoteStore {
-    add(title, description, priority = 2, finished = false, endDate, callback) {
+    add(title, description, priority = 2, finished = false, endDate) {
         const creationDate = new Date().valueOf();
         const note = new Note(title, description, priority, finished, endDate, creationDate);
         db.insert(note, () => {

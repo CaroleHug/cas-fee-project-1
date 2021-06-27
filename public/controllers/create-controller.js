@@ -3,6 +3,7 @@ import {Note} from '../services/note.js';
 
 export class CreateController {
     constructor() {
+        // eslint-disable-next-line no-undef
         this.noteTemplateCompiled = Handlebars.compile(document.getElementById('note-template').innerHTML);
         this.noteContainer = document.getElementById('note-container');
         this.readUrlParams();
