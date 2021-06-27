@@ -20,6 +20,10 @@ input[type=date] {
     width: 10rem;
 }
 
+textarea {
+    height: 10rem;
+}
+
 .save-button {
     width: 100%;
     margin-top: 6px;
